@@ -1,4 +1,8 @@
+// External imports
 import { Command } from "commander";
+
+// Internal imports
+import { checkSetupStatus, performSetup } from "./core/setup";
 
 function createCLI(appVersion: string, appDescription: string): Command {
   const app = new Command("cvstack")
@@ -10,9 +14,35 @@ function createCLI(appVersion: string, appDescription: string): Command {
     .alias("cvs");
 
   // add other commands here
-  app.action(() => console.log("App working"));
+  app.action(async () => {
+    await ensureSetup();
+    console.log("App working");
+  });
 
   return app;
+}
+
+// Auto-setup middleware - runs before any command that needs setup
+export async function ensureSetup(): Promise<boolean> {
+  const status = checkSetupStatus();
+
+  if (!status.isFullySetup) {
+    console.log("⚠️  CVStack requires initial setup...");
+    console.log("Running setup automatically...");
+
+    // todo: can clean this up later
+    const result = await performSetup();
+
+    if (result.isErr()) {
+      console.error("❌ Auto-setup failed:", result.error.message);
+      console.log("Please run `cvstack setup` manually.");
+      return false;
+    }
+
+    console.log("✓ Auto-setup completed!");
+  }
+
+  return true;
 }
 
 export default createCLI;

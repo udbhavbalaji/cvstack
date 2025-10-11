@@ -13,16 +13,16 @@
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:07:50.084Z",
       "updatedAt": "2025-10-11T16:38:24.302Z"
-    }
-  ],
-  "unchecked": [
+    },
     {
-      "checked": false,
+      "checked": true,
       "description": "create automatic app setup upon install",
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:09:20.221Z",
-      "updatedAt": "2025-10-11T16:09:20.221Z"
-    },
+      "updatedAt": "2025-10-11T21:47:29.028Z"
+    }
+  ],
+  "unchecked": [
     {
       "checked": false,
       "description": "create add command",
