@@ -1,0 +1,96 @@
+{
+  "checked": [],
+  "unchecked": [
+    {
+      "checked": false,
+      "description": "setup bun project",
+      "priority": "HIGH",
+      "createdAt": "2025-10-11T16:07:01.585Z",
+      "updatedAt": "2025-10-11T16:07:01.589Z"
+    },
+    {
+      "checked": false,
+      "description": "setup python project",
+      "priority": "LOW",
+      "createdAt": "2025-10-11T16:07:16.007Z",
+      "updatedAt": "2025-10-11T16:07:16.007Z"
+    },
+    {
+      "checked": false,
+      "description": "create python scraper",
+      "priority": "LOW",
+      "createdAt": "2025-10-11T16:07:31.289Z",
+      "updatedAt": "2025-10-11T16:07:31.290Z"
+    },
+    {
+      "checked": false,
+      "description": "create cli app",
+      "priority": "HIGH",
+      "createdAt": "2025-10-11T16:07:50.084Z",
+      "updatedAt": "2025-10-11T16:07:50.085Z"
+    },
+    {
+      "checked": false,
+      "description": "create automatic app setup upon install",
+      "priority": "HIGH",
+      "createdAt": "2025-10-11T16:09:20.221Z",
+      "updatedAt": "2025-10-11T16:09:20.221Z"
+    },
+    {
+      "checked": false,
+      "description": "create add command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:09:37.197Z",
+      "updatedAt": "2025-10-11T16:09:37.198Z"
+    },
+    {
+      "checked": false,
+      "description": "create apply command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:09:46.785Z",
+      "updatedAt": "2025-10-11T16:09:46.785Z"
+    },
+    {
+      "checked": false,
+      "description": "create list command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:09:53.669Z",
+      "updatedAt": "2025-10-11T16:09:53.669Z"
+    },
+    {
+      "checked": false,
+      "description": "create stats command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:03.818Z",
+      "updatedAt": "2025-10-11T16:10:03.819Z"
+    },
+    {
+      "checked": false,
+      "description": "create star command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:06.298Z",
+      "updatedAt": "2025-10-11T16:10:06.298Z"
+    },
+    {
+      "checked": false,
+      "description": "create reset command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:12.079Z",
+      "updatedAt": "2025-10-11T16:10:12.080Z"
+    },
+    {
+      "checked": false,
+      "description": "create edit command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:11:22.676Z",
+      "updatedAt": "2025-10-11T16:11:22.676Z"
+    },
+    {
+      "checked": false,
+      "description": "create search command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:11:27.306Z",
+      "updatedAt": "2025-10-11T16:11:27.307Z"
+    }
+  ]
+}
