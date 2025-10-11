@@ -1,27 +1,14 @@
 {
-  "checked": [],
-  "unchecked": [
+  "checked": [
     {
-      "checked": false,
+      "checked": true,
       "description": "setup bun project",
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:07:01.585Z",
-      "updatedAt": "2025-10-11T16:07:01.589Z"
-    },
-    {
-      "checked": false,
-      "description": "setup python project",
-      "priority": "LOW",
-      "createdAt": "2025-10-11T16:07:16.007Z",
-      "updatedAt": "2025-10-11T16:07:16.007Z"
-    },
-    {
-      "checked": false,
-      "description": "create python scraper",
-      "priority": "LOW",
-      "createdAt": "2025-10-11T16:07:31.289Z",
-      "updatedAt": "2025-10-11T16:07:31.290Z"
-    },
+      "updatedAt": "2025-10-11T16:29:00.902Z"
+    }
+  ],
+  "unchecked": [
     {
       "checked": false,
       "description": "create cli app",
@@ -91,6 +78,20 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:11:27.306Z",
       "updatedAt": "2025-10-11T16:11:27.307Z"
+    },
+    {
+      "checked": false,
+      "description": "setup python project",
+      "priority": "LOW",
+      "createdAt": "2025-10-11T16:07:16.007Z",
+      "updatedAt": "2025-10-11T16:07:16.007Z"
+    },
+    {
+      "checked": false,
+      "description": "create python scraper",
+      "priority": "LOW",
+      "createdAt": "2025-10-11T16:07:31.289Z",
+      "updatedAt": "2025-10-11T16:07:31.290Z"
     }
   ]
 }
