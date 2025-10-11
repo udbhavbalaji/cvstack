@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "A simple CLI tool to help track job applications!",
   "module": "index.ts",
-  "scripts": {},
+  "scripts": {
+    "dev": "BUN_ENV=development bun run index.ts",
+    "app": "bun run index.ts"
+  },
   "type": "module",
   "private": true,
   "devDependencies": {
@@ -11,5 +14,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "commander": "^14.0.1"
   }
 }
