@@ -41,6 +41,13 @@
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:31.289Z",
       "updatedAt": "2025-10-12T06:02:30.369Z"
+    },
+    {
+      "checked": true,
+      "description": "add custom help menu setup",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-12T15:03:16.189Z",
+      "updatedAt": "2025-10-12T15:03:23.863Z"
     }
   ],
   "unchecked": [
