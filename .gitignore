@@ -140,3 +140,9 @@ vite.config.ts.timestamp-*
 
 # quiklist app data
 .quiklist/metadata.json
+
+# Python Scraper
+__pycache__/
+*.pyc
+build/
+chromium/

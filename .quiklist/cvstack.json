@@ -27,6 +27,20 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
       "updatedAt": "2025-10-12T01:49:58.913Z"
+    },
+    {
+      "checked": true,
+      "description": "setup python project",
+      "priority": "LOW",
+      "createdAt": "2025-10-11T16:07:16.007Z",
+      "updatedAt": "2025-10-12T06:02:30.353Z"
+    },
+    {
+      "checked": true,
+      "description": "create python scraper",
+      "priority": "LOW",
+      "createdAt": "2025-10-11T16:07:31.289Z",
+      "updatedAt": "2025-10-12T06:02:30.369Z"
     }
   ],
   "unchecked": [
@@ -85,20 +99,6 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:11:27.306Z",
       "updatedAt": "2025-10-11T16:11:27.307Z"
-    },
-    {
-      "checked": false,
-      "description": "setup python project",
-      "priority": "LOW",
-      "createdAt": "2025-10-11T16:07:16.007Z",
-      "updatedAt": "2025-10-11T16:07:16.007Z"
-    },
-    {
-      "checked": false,
-      "description": "create python scraper",
-      "priority": "LOW",
-      "createdAt": "2025-10-11T16:07:31.289Z",
-      "updatedAt": "2025-10-11T16:07:31.290Z"
     }
   ]
 }
