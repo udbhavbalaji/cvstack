@@ -14,11 +14,10 @@ async function crash<E extends CVStackError>(
     );
   }
 
-  // todo: re-enable logging
-  // await log.toFile.async.error(
-  //   `${err.error.name}: ${err.error.message}`,
-  //   err.error.additionalContext,
-  // );
+  await log.toFile.async.error(
+    `${err.error.name}: ${err.error.message}`,
+    err.error.additionalContext,
+  );
 
   log.error(`${err.error.name}: ${err.error.message}`);
   log.debug(err.error.location);
@@ -32,11 +31,10 @@ function crashSync<E extends CVStackError>(err: Err<unknown, E>): never {
     );
   }
 
-  // todo: re-enable logging
-  // log.toFile.error(
-  //   `${err.error.name}: ${err.error.message}`,
-  //   err.error.additionalContext,
-  // );
+  log.toFile.error(
+    `${err.error.name}: ${err.error.message}`,
+    err.error.additionalContext,
+  );
 
   log.error(`${err.error.name}: ${err.error.message}`);
   log.debug(err.error.location);

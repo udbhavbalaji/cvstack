@@ -39,6 +39,9 @@ async function runMigrations() {
     return err(dbRes.error);
   }
 
+  // fix: need to update this file to add error handling. Also looks
+  // like I'm not even checking if error or not, just continuing. Need to handle this better
+
   if (!fs.existsSync(MIGRATIONS_DIR)) {
     console.log("🧩 Generating migrations...");
     await generateMigrations();

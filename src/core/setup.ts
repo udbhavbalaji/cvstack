@@ -12,6 +12,7 @@ import {
 import { createDatabase, runMigrations } from "@/external/db/client";
 import { err, ok, Result, ResultAsync } from "neverthrow";
 import errors from "./errors";
+import log from "./logger";
 
 export function checkSetupStatus(): SetupStatus {
   const directoriesExist = REQUIRED_DIRS.every((dir) => fs.existsSync(dir));
@@ -71,7 +72,9 @@ export async function performSetup() {
 function _createDirectories(dirs: string[]) {
   for (const dir of dirs) {
     if (!fs.existsSync(dir)) {
+      log.info(`Creating directory: ${dir}`);
       fs.mkdirSync(dir, { recursive: true });
+      log.info(`✓ Created: ${dir}`);
     }
   }
 }

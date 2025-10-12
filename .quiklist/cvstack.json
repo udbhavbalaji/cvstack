@@ -20,6 +20,13 @@
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:09:20.221Z",
       "updatedAt": "2025-10-11T21:47:29.028Z"
+    },
+    {
+      "checked": true,
+      "description": "setup env file loading and setup",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-12T01:49:46.079Z",
+      "updatedAt": "2025-10-12T01:49:58.913Z"
     }
   ],
   "unchecked": [

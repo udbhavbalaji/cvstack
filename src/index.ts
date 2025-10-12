@@ -3,6 +3,7 @@ import { Command } from "commander";
 
 // Internal imports
 import { checkSetupStatus, performSetup } from "./core/setup";
+import { getEnv } from "./consts";
 
 function createCLI(appVersion: string, appDescription: string): Command {
   const app = new Command("cvstack")
@@ -16,7 +17,9 @@ function createCLI(appVersion: string, appDescription: string): Command {
   // add other commands here
   app.action(async () => {
     await ensureSetup();
-    console.log("App working");
+    // Now it's safe to access env after setup
+    const env = getEnv();
+    console.log("App working: OPENROUTER_API_KEY: ", env.OPENROUTER_API_KEY);
   });
 
   return app;
