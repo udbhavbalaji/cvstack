@@ -1,9 +1,9 @@
 // External imports
-import { err, type Result } from "neverthrow";
+import { err, type ResultAsync, type Result } from "neverthrow";
 
 // Internal imports
 import type { CVStackError } from "@/types/errors";
-import { crashSync, safeCrash } from "@/core/terminate";
+import { crashSync, safeCrash, crash } from "@/core/terminate";
 
 function unwrap<T, E extends CVStackError>(
   result: Result<T, E>,
@@ -20,4 +20,21 @@ function unwrap<T, E extends CVStackError>(
   return result.value;
 }
 
-export { unwrap };
+async function unwrapAsync<T, E extends CVStackError>(
+  res: ResultAsync<T, E>,
+  additionalLocationContext?: string,
+): Promise<T> {
+  const result = await res;
+
+  if (result.isErr()) {
+    const newErr: CVStackError = {
+      ...result.error,
+      location: `${result.error.location}${additionalLocationContext ? `:${additionalLocationContext}` : ""}`,
+    };
+    return result.error.safe ? safeCrash(err(newErr)) : crash(err(newErr));
+  }
+
+  return result.value;
+}
+
+export { unwrap, unwrapAsync };
