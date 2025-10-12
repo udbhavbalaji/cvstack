@@ -4,22 +4,35 @@ import { Command } from "commander";
 // Internal imports
 import { checkSetupStatus, performSetup } from "./core/setup";
 import { getEnv } from "./consts";
+import { getBanner } from "./core/banner";
+import { setupCustomHelp } from "./core/help";
+import log from "./core/logger";
 
 function createCLI(appVersion: string, appDescription: string): Command {
   const app = new Command("cvstack")
     .description(appDescription)
     .version(appVersion)
     .showSuggestionAfterError(true)
-    // .addHelpText("beforeAll", getBanner())
+    .addHelpText("beforeAll", getBanner())
     .allowExcessArguments(true)
     .alias("cvs");
 
+  // Adding custom help
+  setupCustomHelp(app);
+
   // add other commands here
+
   app.action(async () => {
     await ensureSetup();
     // Now it's safe to access env after setup
-    const env = getEnv();
-    console.log("App working: OPENROUTER_API_KEY: ", env.OPENROUTER_API_KEY);
+    app.outputHelp();
+    if (app.args.length === 0) {
+      return;
+    }
+    log.error(`Invalid command: ${app.args.join(" ")}`);
+    //
+    // const env = getEnv();
+    // console.log("App working: OPENROUTER_API_KEY: ", env.OPENROUTER_API_KEY);
   });
 
   return app;
