@@ -1,11 +1,28 @@
 // External imports
 
 // Internal imports
-import type { CVStackError } from "@/types/errors";
+import type { CVStackError, ZodInputSource } from "@/types/errors";
 import { isCVStackError } from "@/core/type-guards";
 import log from "./logger";
+import type { ZodError } from "zod";
+import { capitalize } from "./helpers";
 
 const create = {
+  zodError: (
+    err: ZodError,
+    fnName: string,
+    source: ZodInputSource,
+  ): CVStackError => {
+    return {
+      _type: "zod",
+      name: `CVStack${capitalize(source)}ZodError`,
+      message: err.message,
+      location: fnName,
+      safe: source === "cli",
+      issues: err.issues,
+      source,
+    };
+  },
   shellError: (
     err: unknown,
     fnName: string,
