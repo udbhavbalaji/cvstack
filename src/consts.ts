@@ -1,5 +1,6 @@
 // External imports
 import { createEnv, type DefaultCombinedSchema } from "@t3-oss/env-core";
+import { config as importEnv } from "dotenv";
 import path from "node:path";
 import os from "node:os";
 import z from "zod";
@@ -44,9 +45,11 @@ let _env: ReturnType<
 > | null = null;
 
 export const getEnv = () => {
+  // Load environment variables
+  importEnv({ path: ENV_FILEPATH, quiet: true, override: true });
+
   if (!_env) {
     _env = createEnv({
-      // _env = createEnv({
       server: {
         OPENROUTER_API_KEY: z
           .string()

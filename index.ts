@@ -3,10 +3,10 @@
 import createCLI from "@/index";
 import { config as defineEnv } from "dotenv";
 import { version, description } from "./package.json";
-import { ENV_FILEPATH } from "@/consts";
-
-// Load environment variables
-defineEnv({ path: ENV_FILEPATH, quiet: true, override: true });
+// import { ENV_FILEPATH } from "@/consts";
+//
+// // Load environment variables
+// defineEnv({ path: ENV_FILEPATH, quiet: true, override: true });
 
 async function main() {
   try {
