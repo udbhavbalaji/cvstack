@@ -1,0 +1,7 @@
+Steps to follow to build the scraper
+
+1. Create the files and the required spec file. Make sure all submodules are included in the build.
+2. Run (playwright install chromium --dry-run) and copy the install path for chromium.
+3. Copy the chromium executable to the project folder. (cp -R <path-to-chromium> ./chromium)
+4. Run the build command (pyinstaller cvstack-scraper.spec)
+5. Copy the py executable to bun's project folder. (cp -R ./dist/cvstack-scraper ../dist/bin)
