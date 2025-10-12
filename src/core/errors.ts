@@ -4,8 +4,9 @@
 import type { CVStackError, ZodInputSource } from "@/types/errors";
 import { isCVStackError } from "@/core/type-guards";
 import log from "./logger";
-import type { ZodError } from "zod";
+import { ZodError } from "zod";
 import { capitalize } from "./helpers";
+import { OpenAIError } from "openai";
 
 const create = {
   zodError: (
@@ -43,6 +44,21 @@ const create = {
       return create.unknownError(err, fnName, additionalContext);
     }
   },
+  databaseError: (
+    message: string,
+    safe: boolean,
+    location: string,
+    additionalContext?: any,
+  ): CVStackError => {
+    return {
+      _type: "db",
+      name: "CVStackDatabaseError",
+      message,
+      safe,
+      location,
+      additionalContext,
+    };
+  },
   unknownError: (
     err: unknown,
     fnName: string,
@@ -62,6 +78,19 @@ const create = {
 
 const handle = {
   setupError: (err: unknown, fnName: string, additionalContext?: any) => { },
+  zodError: (
+    err: unknown,
+    fnName: string,
+    additionalContext?: any,
+  ): CVStackError => {
+    if (isCVStackError(err)) {
+      return err;
+    } else if (err instanceof ZodError) {
+      return create.zodError(err, fnName, additionalContext);
+    } else {
+      return handle.unknownError(err, fnName, additionalContext);
+    }
+  },
   fileError: (
     err: unknown,
     fnName: string,
@@ -101,6 +130,26 @@ const handle = {
         additionalContext,
       };
     } else return handle.unknownError(err, fnName, additionalContext);
+  },
+  promptError: (
+    err: unknown,
+    fnName: string,
+    additionalContext?: any,
+  ): CVStackError => {
+    if (isCVStackError(err)) {
+      return err;
+    } else if (err instanceof Error) {
+      return {
+        _type: "prompt",
+        name: "CVStackPromptError",
+        message: "Cancelled.",
+        safe: true,
+        location: fnName,
+        additionalContext,
+      };
+    } else {
+      return handle.unknownError(err, fnName, additionalContext);
+    }
   },
   databaseError: (
     err: unknown,
@@ -173,6 +222,37 @@ const handle = {
       }
     }
     return handle.unknownError(err, fnName, additionalContext);
+  },
+  shellError: (
+    err: unknown,
+    fnName: string,
+    additionalContext?: any,
+  ): CVStackError => {
+    if (isCVStackError(err)) {
+      return err;
+    } else if (typeof err === "string") {
+      return create.shellError(err, fnName, additionalContext);
+    } else {
+      return handle.unknownError(err, fnName, additionalContext);
+    }
+  },
+  aiError: (
+    err: unknown,
+    fnName: string,
+    additionalContext?: any,
+  ): CVStackError => {
+    if (isCVStackError(err)) {
+      return err;
+    } else if (err instanceof OpenAIError) {
+      return {
+        _type: "ai",
+        name: `CVStackAIError: ${err.name}`,
+        message: err.message,
+        safe: false,
+        location: fnName,
+        additionalContext: additionalContext ?? `${err.cause} - ${err.stack}`,
+      };
+    } else return handle.unknownError(err, fnName, additionalContext);
   },
   unknownError: (
     err: unknown,

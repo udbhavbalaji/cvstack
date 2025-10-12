@@ -3,12 +3,15 @@ import { Command } from "commander";
 
 // Internal imports
 import { checkSetupStatus, performSetup } from "./core/setup";
-import { getEnv } from "./consts";
 import { getBanner } from "./core/banner";
 import { setupCustomHelp } from "./core/help";
 import log from "./core/logger";
+import add from "./commands/add";
 
-function createCLI(appVersion: string, appDescription: string): Command {
+async function createCLI(
+  appVersion: string,
+  appDescription: string,
+): Promise<Command> {
   const app = new Command("cvstack")
     .description(appDescription)
     .version(appVersion)
@@ -20,7 +23,10 @@ function createCLI(appVersion: string, appDescription: string): Command {
   // Adding custom help
   setupCustomHelp(app);
 
+  await ensureSetup();
+
   // add other commands here
+  app.addCommand(add);
 
   app.action(async () => {
     await ensureSetup();

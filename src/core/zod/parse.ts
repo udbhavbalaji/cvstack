@@ -1,5 +1,5 @@
 import errors from "@/core/errors";
-import type { ZodInputSource, ZodInputSource } from "@/types/errors";
+import type { ZodInputSource } from "@/types/errors";
 import type { ZodType } from "zod";
 import { Result, ResultAsync } from "neverthrow";
 import { unwrap, unwrapAsync } from "@/core/unwrap";
@@ -21,7 +21,7 @@ function _unsafeParseSchema<Schema extends ZodType>(
 async function _unsafeParseSchemaAsync<Schema extends ZodType>(
   schema: Schema,
   value: unknown,
-  source: SchemaSource,
+  source: ZodInputSource,
 ) {
   const res = await schema.safeParseAsync(value);
 
@@ -29,40 +29,40 @@ async function _unsafeParseSchemaAsync<Schema extends ZodType>(
     return res.data;
   }
 
-  throw new CVZodError(res.error, source);
+  throw errors.create.zodError(res.error, "parseSchemaAsync", source);
 }
 
 const parseSchema = <Schema extends ZodType>(
   schema: Schema,
   value: unknown,
-  source: SchemaSource,
+  source: ZodInputSource,
 ) =>
   unwrap(
     Result.fromThrowable(
       () => _unsafeParseSchema(schema, value, source),
-      (err) => handleZodError(err, "parseSchema", value),
+      (err) => errors.handle.zodError(err, "parseSchema", value),
     )(),
   );
 
 const parseSchemaUnwrapped = <Schema extends ZodType>(
   schema: Schema,
   value: unknown,
-  source: SchemaSource,
+  source: ZodInputSource,
 ) =>
   Result.fromThrowable(
     () => _unsafeParseSchema(schema, value, source),
-    (err) => handleZodError(err, "parseSchema", value),
+    (err) => errors.handle.zodError(err, "parseSchema", value),
   )();
 
 const parseSchemaAsync = async <Schema extends ZodType>(
   schema: Schema,
   value: unknown,
-  source: SchemaSource,
+  source: ZodInputSource,
 ) =>
   unwrapAsync(
     ResultAsync.fromPromise(
       _unsafeParseSchemaAsync(schema, value, source),
-      (err) => handleZodError(err, "parseSchemaAsync", value),
+      (err) => errors.handle.zodError(err, "parseSchemaAsync", value),
     ),
     "safeParseAsync",
   );

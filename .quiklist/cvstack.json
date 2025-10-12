@@ -30,6 +30,13 @@
     },
     {
       "checked": true,
+      "description": "add custom help menu setup",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-12T15:03:16.189Z",
+      "updatedAt": "2025-10-12T15:03:23.863Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -44,19 +51,19 @@
     },
     {
       "checked": true,
-      "description": "add custom help menu setup",
+      "description": "create add command",
       "priority": "MEDIUM",
-      "createdAt": "2025-10-12T15:03:16.189Z",
-      "updatedAt": "2025-10-12T15:03:23.863Z"
+      "createdAt": "2025-10-11T16:09:37.197Z",
+      "updatedAt": "2025-10-12T20:53:23.357Z"
     }
   ],
   "unchecked": [
     {
       "checked": false,
-      "description": "create add command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:09:37.197Z",
-      "updatedAt": "2025-10-11T16:09:37.198Z"
+      "description": "wrap createEnv to ensure safe handling of invalid environment variables",
+      "priority": "HIGH",
+      "createdAt": "2025-10-12T18:59:05.042Z",
+      "updatedAt": "2025-10-12T18:59:05.047Z"
     },
     {
       "checked": false,

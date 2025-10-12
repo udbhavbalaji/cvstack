@@ -16,6 +16,18 @@ export type CVStackZodError = BaseCVStackError & {
   issues: z.core.$ZodIssue[];
 };
 
+export type CVStackAIError = BaseCVStackError & {
+  _type: "ai";
+};
+
+export type CVStackPromptError = BaseCVStackError & {
+  _type: "prompt";
+};
+
+export type CVStackCLIError = BaseCVStackError & {
+  _type: "cli";
+};
+
 export type CVStackDatabaseError = BaseCVStackError & {
   _type: "db";
 };
@@ -37,4 +49,7 @@ export type CVStackError =
   | CVStackUnknownError
   | CVStackZodError
   | CVStackShellError
+  | CVStackCLIError
+  | CVStackAIError
+  | CVStackPromptError
   | CVStackFileError;
