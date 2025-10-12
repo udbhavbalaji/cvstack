@@ -6,23 +6,30 @@
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:07:01.585Z",
       "updatedAt": "2025-10-11T16:29:00.902Z"
-    }
-  ],
-  "unchecked": [
+    },
     {
-      "checked": false,
+      "checked": true,
       "description": "create cli app",
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:07:50.084Z",
-      "updatedAt": "2025-10-11T16:07:50.085Z"
+      "updatedAt": "2025-10-11T16:38:24.302Z"
     },
     {
-      "checked": false,
+      "checked": true,
       "description": "create automatic app setup upon install",
       "priority": "HIGH",
       "createdAt": "2025-10-11T16:09:20.221Z",
-      "updatedAt": "2025-10-11T16:09:20.221Z"
+      "updatedAt": "2025-10-11T21:47:29.028Z"
     },
+    {
+      "checked": true,
+      "description": "setup env file loading and setup",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-12T01:49:46.079Z",
+      "updatedAt": "2025-10-12T01:49:58.913Z"
+    }
+  ],
+  "unchecked": [
     {
       "checked": false,
       "description": "create add command",
