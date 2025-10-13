@@ -4,14 +4,14 @@
   "description": "A simple CLI tool to help track job applications!",
   "module": "index.ts",
   "bin": {
-    "cvstack": "dist/bin/index.js"
+    "cvstack": "dist/bin/cvstack"
   },
   "scripts": {
     "dev": "BUN_ENV=development bun run index.ts",
     "app": "bun run index.ts",
     "db:generate": "bunx drizzle-kit generate",
     "db:migrate": "bunx drizzle-kit migrate",
-    "build": "bun build index.ts --outfile dist/bin/cli.js --compile && cp -R cvstack-scraper/dist/cvstack-scraper/* dist/bin",
+    "build": "bun build index.ts --outfile dist/bin/cvstack --compile && cp -R cvstack-scraper/dist/cvstack-scraper/* dist/bin",
     "scrape": "./dist/bin/cvstack-scraper"
   },
   "type": "module",
