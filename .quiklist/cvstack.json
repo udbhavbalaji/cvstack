@@ -113,6 +113,20 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:11:27.306Z",
       "updatedAt": "2025-10-11T16:11:27.307Z"
+    },
+    {
+      "checked": false,
+      "description": "add spinner fail logic in the error handlers",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-13T05:06:27.875Z",
+      "updatedAt": "2025-10-13T05:06:27.885Z"
+    },
+    {
+      "checked": false,
+      "description": "add ai-auth command to allow users to update API key",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-13T05:08:13.206Z",
+      "updatedAt": "2025-10-13T05:08:13.207Z"
     }
   ]
 }
