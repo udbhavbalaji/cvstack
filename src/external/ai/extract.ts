@@ -55,6 +55,8 @@ function getExtractionClient(env: CVStackEnvironment) {
 
 async function _extractData(
   description: string,
+  company: string,
+  location: string,
   model: CVStackModels,
   env: CVStackEnvironment,
 ) {
@@ -69,7 +71,7 @@ async function _extractData(
       },
       {
         role: "user",
-        content: `Extract important information from the following job description: ${description}`,
+        content: `Extract important information from the following job description: ${description}; Company: ${company}; Location: ${location}`,
       },
     ],
     temperature: 0.2,
@@ -98,6 +100,8 @@ async function _extractData(
 
 const extractData = async (
   description: string,
+  company: string,
+  location: string,
   model: CVStackModels,
   env: CVStackEnvironment,
 ) => {
@@ -111,7 +115,13 @@ const extractData = async (
     aiSpinner.color = "yellow";
   }, 10000);
 
-  const res = await extractDataWrapped(description, model, env);
+  const res = await extractDataWrapped(
+    description,
+    company,
+    location,
+    model,
+    env,
+  );
 
   clearTimeout(textUpdateTimeout);
 
@@ -127,11 +137,14 @@ const extractData = async (
 
 const extractDataWrapped = (
   description: string,
+  company: string,
+  location: string,
   model: CVStackModels,
   env: CVStackEnvironment,
 ) =>
-  ResultAsync.fromPromise(_extractData(description, model, env), (err) =>
-    errors.handle.aiError(err, "extractData", { description, model }),
+  ResultAsync.fromPromise(
+    _extractData(description, company, location, model, env),
+    (err) => errors.handle.aiError(err, "extractData", { description, model }),
   );
 
 export { extractData as default };

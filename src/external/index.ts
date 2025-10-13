@@ -8,6 +8,8 @@ async function getJobAnalysis(jobUrl: string, env: CVStackEnvironment) {
 
   const extractedData = await extractData(
     scrapedData.description,
+    scrapedData.company,
+    scrapedData.location,
     "x-ai/grok-4-fast",
     env,
   );
