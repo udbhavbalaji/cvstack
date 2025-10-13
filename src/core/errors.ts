@@ -244,10 +244,18 @@ const handle = {
     if (isCVStackError(err)) {
       return err;
     } else if (err instanceof OpenAIError) {
+      let message = err.message;
+      if (err.message.includes("Missing credentials.")) {
+        message =
+          "OpenRouter API key is missing. Run 'cvstack ai-auth' to update your API key.";
+      } else if (err.message.includes("401")) {
+        message =
+          "Invalid API key. Run 'cvstack ai-auth' to update your API key.";
+      }
       return {
         _type: "ai",
         name: `CVStackAIError: ${err.name}`,
-        message: err.message,
+        message,
         safe: false,
         location: fnName,
         additionalContext: additionalContext ?? `${err.cause} - ${err.stack}`,
