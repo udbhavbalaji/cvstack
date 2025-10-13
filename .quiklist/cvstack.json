@@ -127,6 +127,13 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-13T05:08:13.206Z",
       "updatedAt": "2025-10-13T06:34:06.846Z"
+    },
+    {
+      "checked": false,
+      "description": "see why the migrations aren't applying when the app is first run out of the project dir",
+      "priority": "HIGH",
+      "createdAt": "2025-10-13T08:06:09.151Z",
+      "updatedAt": "2025-10-13T08:06:09.163Z"
     }
   ]
 }
