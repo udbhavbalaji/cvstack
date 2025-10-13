@@ -40,6 +40,10 @@ export type CVStackFileError = BaseCVStackError & {
   _type: "file";
 };
 
+export type CVStackSetupError = BaseCVStackError & {
+  _type: "setup";
+};
+
 export type CVStackShellError = BaseCVStackError & {
   _type: "shell";
 };
@@ -51,5 +55,6 @@ export type CVStackError =
   | CVStackShellError
   | CVStackCLIError
   | CVStackAIError
+  | CVStackSetupError
   | CVStackPromptError
   | CVStackFileError;

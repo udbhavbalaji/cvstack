@@ -24,6 +24,20 @@ const create = {
       source,
     };
   },
+  setupError: (
+    message: string,
+    fnName: string,
+    additionalContext?: any,
+  ): CVStackError => {
+    return {
+      _type: "setup",
+      name: "CVStackSetupError",
+      message,
+      safe: false,
+      location: fnName,
+      additionalContext,
+    };
+  },
   shellError: (
     err: unknown,
     fnName: string,
@@ -77,7 +91,21 @@ const create = {
 };
 
 const handle = {
-  setupError: (err: unknown, fnName: string, additionalContext?: any) => { },
+  setupError: (err: unknown, fnName: string, additionalContext?: any) => {
+    if (isCVStackError(err)) {
+      return err;
+    } else if (err instanceof Error) {
+      if (fnName === "createEnv") {
+        return {
+          _type: "setup",
+          name: "CVStackSetupError",
+          message: "Invalid environment variables",
+          safe: false,
+          location: fnName,
+        };
+      }
+    }
+  },
   zodError: (
     err: unknown,
     fnName: string,

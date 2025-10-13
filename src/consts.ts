@@ -4,6 +4,11 @@ import { config as importEnv } from "dotenv";
 import path from "node:path";
 import os from "node:os";
 import z from "zod";
+import { err, Result } from "neverthrow";
+import errors from "./core/errors";
+import { unwrap } from "./core/unwrap";
+import { safeCrash } from "./core/terminate";
+import type { CVStackError, CVStackSetupError } from "./types/errors";
 
 // HACK: No Internal imports
 
@@ -55,12 +60,32 @@ export const getEnv = () => {
           .string()
           .startsWith("sk-", "Enter a valid OpenRouter API key")
           .optional(),
-        BUN_ENV: z.literal("development").optional(),
+        BUN_ENV: z
+          .literal(
+            "development",
+            "CvStack runs in the production env by default. If you want further debugging information, set this to 'development'",
+          )
+          .optional(),
       },
       runtimeEnv: process.env,
       emptyStringAsUndefined: true,
+      onValidationError: (issues) => {
+        let message = "Invalid environment variables:\n\n";
+
+        issues.forEach((issue, idx) => {
+          message += `${idx + 1}. ${String(issue.path![0])}: ${issue.message}\n`;
+        });
+
+        console.error(message);
+
+        console.error(
+          "Environment isn't valid. Run 'cvstack env' to update your env variables",
+        );
+        process.exit(1);
+      },
     });
   }
+
   // todo: can add error handling logic here to crash the app if env isn't found
   return _env;
 };

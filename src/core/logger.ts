@@ -8,8 +8,6 @@ import type { LogLevel, LogMode } from "@/types/logger";
 import { writeLog, writeLogAsync } from "@/core/file";
 import { getEnv } from "@/consts";
 
-const env = getEnv();
-
 const messageColors = {
   debug: chalk.gray,
   info: chalk.cyan,
@@ -19,6 +17,7 @@ const messageColors = {
 
 // Helper function to safely check if we're in development mode
 const isDevelopment = () => {
+  const env = getEnv();
   // return (
   //   process.env.BUN_ENV === "development" ||
   //   process.env.NODE_ENV === "development"
