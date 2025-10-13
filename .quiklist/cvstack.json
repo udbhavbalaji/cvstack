@@ -37,6 +37,13 @@
     },
     {
       "checked": true,
+      "description": "create add command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:09:37.197Z",
+      "updatedAt": "2025-10-12T20:53:23.357Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -51,20 +58,13 @@
     },
     {
       "checked": true,
-      "description": "create add command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:09:37.197Z",
-      "updatedAt": "2025-10-12T20:53:23.357Z"
-    }
-  ],
-  "unchecked": [
-    {
-      "checked": false,
       "description": "wrap createEnv to ensure safe handling of invalid environment variables",
       "priority": "HIGH",
       "createdAt": "2025-10-12T18:59:05.042Z",
-      "updatedAt": "2025-10-12T18:59:05.047Z"
-    },
+      "updatedAt": "2025-10-13T06:43:53.766Z"
+    }
+  ],
+  "unchecked": [
     {
       "checked": false,
       "description": "create apply command",
@@ -123,10 +123,10 @@
     },
     {
       "checked": false,
-      "description": "add ai-auth command to allow users to update API key",
+      "description": "add env command to allow users to update env variables",
       "priority": "MEDIUM",
       "createdAt": "2025-10-13T05:08:13.206Z",
-      "updatedAt": "2025-10-13T05:08:13.207Z"
+      "updatedAt": "2025-10-13T06:34:06.846Z"
     }
   ]
 }
