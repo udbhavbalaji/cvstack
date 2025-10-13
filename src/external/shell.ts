@@ -1,4 +1,5 @@
 import errors from "@/core/errors";
+import { unwrapAsync } from "@/core/unwrap";
 import { $ } from "bun";
 import { ResultAsync } from "neverthrow";
 
@@ -11,6 +12,23 @@ async function _generateMigrations() {
 
   return output.text();
 }
+
+async function _runScraper(jobUrl: string) {
+  const output = await $`bun run scrape "${jobUrl}"`.quiet().nothrow();
+
+  if (output.exitCode !== 0) {
+    throw errors.create.shellError(output.text(), "runScraper");
+  }
+
+  return output.json();
+}
+
+export const runScraper = (jobUrl: string) =>
+  unwrapAsync(
+    ResultAsync.fromPromise(_runScraper(jobUrl), (err) =>
+      errors.create.shellError(err, "runScraper"),
+    ),
+  );
 
 export const generateMigrations = () =>
   ResultAsync.fromPromise(_generateMigrations(), (err) =>

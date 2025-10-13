@@ -1,3 +1,5 @@
+import type z from "zod";
+
 interface BaseCVStackError {
   name: string;
   message: string;
@@ -5,6 +7,26 @@ interface BaseCVStackError {
   location: string;
   additionalContext?: any;
 }
+
+export type ZodInputSource = "cli" | "scraper" | "ai";
+
+export type CVStackZodError = BaseCVStackError & {
+  _type: "zod";
+  source: ZodInputSource;
+  issues: z.core.$ZodIssue[];
+};
+
+export type CVStackAIError = BaseCVStackError & {
+  _type: "ai";
+};
+
+export type CVStackPromptError = BaseCVStackError & {
+  _type: "prompt";
+};
+
+export type CVStackCLIError = BaseCVStackError & {
+  _type: "cli";
+};
 
 export type CVStackDatabaseError = BaseCVStackError & {
   _type: "db";
@@ -25,5 +47,9 @@ export type CVStackShellError = BaseCVStackError & {
 export type CVStackError =
   | CVStackDatabaseError
   | CVStackUnknownError
+  | CVStackZodError
   | CVStackShellError
+  | CVStackCLIError
+  | CVStackAIError
+  | CVStackPromptError
   | CVStackFileError;

@@ -10,7 +10,7 @@ import { version, description } from "./package.json";
 
 async function main() {
   try {
-    const cvstack = createCLI(version, description);
+    const cvstack = await createCLI(version, description);
     await cvstack.parseAsync(process.argv);
   } catch (err) {
     console.error("An unexpected error occurred:", err);
