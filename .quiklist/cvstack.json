@@ -93,6 +93,13 @@
     },
     {
       "checked": true,
+      "description": "create reset command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:12.079Z",
+      "updatedAt": "2025-10-14T16:10:47.143Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -107,10 +114,10 @@
     },
     {
       "checked": true,
-      "description": "create reset command",
+      "description": "create star command",
       "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:10:12.079Z",
-      "updatedAt": "2025-10-14T16:10:47.143Z"
+      "createdAt": "2025-10-11T16:10:06.298Z",
+      "updatedAt": "2025-10-14T23:16:27.275Z"
     }
   ],
   "unchecked": [
@@ -120,13 +127,6 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:10:03.818Z",
       "updatedAt": "2025-10-11T16:10:03.819Z"
-    },
-    {
-      "checked": false,
-      "description": "create star command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:10:06.298Z",
-      "updatedAt": "2025-10-11T16:10:06.298Z"
     },
     {
       "checked": false,
@@ -144,17 +144,17 @@
     },
     {
       "checked": false,
-      "description": "modify workflow so that as soon as app-setup is done, if API key is missing, then throw",
-      "priority": "LOW",
-      "createdAt": "2025-10-14T15:06:19.539Z",
-      "updatedAt": "2025-10-14T15:06:19.544Z"
-    },
-    {
-      "checked": false,
       "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
       "priority": "MEDIUM",
       "createdAt": "2025-10-14T16:21:46.924Z",
       "updatedAt": "2025-10-14T16:21:46.930Z"
+    },
+    {
+      "checked": false,
+      "description": "modify workflow so that as soon as app-setup is done, if API key is missing, then throw",
+      "priority": "LOW",
+      "createdAt": "2025-10-14T15:06:19.539Z",
+      "updatedAt": "2025-10-14T15:06:19.544Z"
     }
   ]
 }
