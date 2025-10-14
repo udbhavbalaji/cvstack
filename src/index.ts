@@ -7,6 +7,7 @@ import { getBanner } from "./core/banner";
 import { setupCustomHelp } from "./core/help";
 import log from "./core/logger";
 import add from "./commands/add";
+import aiAuth from "./commands/ai-auth";
 
 async function createCLI(
   appVersion: string,
@@ -27,6 +28,7 @@ async function createCLI(
 
   // add other commands here
   app.addCommand(add);
+  app.addCommand(aiAuth);
 
   app.action(async () => {
     await ensureSetup();

@@ -25,12 +25,6 @@ export const MIGRATIONS_DIR = path.join(
 
 export const REQUIRED_DIRS = [APP_DIR, RESOURCES_DIR, LOG_DIR];
 
-// export const PYTHON_EXECUTABLE = path.join(
-//   import.meta.dir,
-//   "cvstack-scraper",
-//   "cvstack-scraper",
-// );
-
 export const PYTHON_EXEC_DEV = path.join(
   path.dirname(import.meta.dir),
   "cvstack-scraper",
@@ -49,6 +43,10 @@ export const PYTHON_EXEC_PROD = path.join(
 export const PYTHON_EXECUTABLE = fs.existsSync(PYTHON_EXEC_PROD)
   ? PYTHON_EXEC_PROD
   : PYTHON_EXEC_DEV;
+
+export const ApiKeySchema = z
+  .string("Enter a valid OpenRouter API key")
+  .startsWith("sk-", "Enter a valid OpenRouter API key");
 
 // Env - Lazy initialization to allow setup to run first
 
@@ -80,10 +78,7 @@ export const getEnv = () => {
   if (!_env) {
     _env = createEnv({
       server: {
-        OPENROUTER_API_KEY: z
-          .string()
-          .startsWith("sk-", "Enter a valid OpenRouter API key")
-          .optional(),
+        OPENROUTER_API_KEY: ApiKeySchema.optional(),
         BUN_ENV: z
           .literal(
             "development",

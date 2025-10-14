@@ -13,6 +13,7 @@ import { createDatabase, runMigrations } from "@/external/db/client";
 import { err, ok, Result, ResultAsync } from "neverthrow";
 import errors from "./errors";
 import log from "./logger";
+import { writeEnvFile } from "./file";
 
 export function checkSetupStatus(): SetupStatus {
   const directoriesExist = REQUIRED_DIRS.every((dir) => fs.existsSync(dir));
@@ -49,7 +50,8 @@ export async function performSetup() {
   }
 
   // 2. Create env file if it doesn't exist
-  const envResult = await createEnvFile();
+  const envResult = await writeEnvFile(DEFAULT_ENV_CONTENT);
+  // const envResult = await createEnvFile();
   if (envResult.isErr()) {
     return err(envResult.error);
   }
