@@ -1,8 +1,7 @@
 import type { Config } from "drizzle-kit";
-import { MIGRATIONS_DIR } from "./src/consts";
 
 export default {
   schema: "./src/external/db/schema.ts",
-  out: MIGRATIONS_DIR,
+  out: "./drizzle",
   dialect: "sqlite",
 } satisfies Config;

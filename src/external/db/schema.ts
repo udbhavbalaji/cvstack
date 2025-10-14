@@ -1,8 +1,19 @@
 // External imports
 import { blob, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-// Internal imports
-import { appStatuses } from "../../consts";
+// // Internal imports
+// import { appStatuses } from "../../consts";
+
+export const appStatuses = [
+  "NOT APPLIED",
+  "APPLIED",
+  "PRE-SCREENING",
+  "ONLINE ASSESSMENT",
+  "HIRING MANAGER INTERVIEW",
+  "BACKGROUND CHECK",
+  "OFFERED",
+  "ACCEPTED",
+] as const;
 
 export const jobsTable = sqliteTable("jobs", {
   jobId: integer("job_id").primaryKey(),

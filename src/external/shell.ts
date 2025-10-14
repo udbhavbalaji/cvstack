@@ -1,3 +1,4 @@
+import { PYTHON_EXECUTABLE } from "@/consts";
 import errors from "@/core/errors";
 import { unwrapAsync } from "@/core/unwrap";
 import { $ } from "bun";
@@ -14,7 +15,11 @@ async function _generateMigrations() {
 }
 
 async function _runScraper(jobUrl: string) {
-  const output = await $`bun run scrape "${jobUrl}"`.quiet().nothrow();
+  // const output =
+  //   await $`../dist/bin/cvstack-scraper/cvstack-scraper "${jobUrl}"`
+  //     .quiet()
+  //     .nothrow();
+  const output = await $`${PYTHON_EXECUTABLE} "${jobUrl}"`.quiet().nothrow();
 
   if (output.exitCode !== 0) {
     throw errors.create.shellError(output.text(), "runScraper");

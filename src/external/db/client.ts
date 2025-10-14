@@ -32,24 +32,16 @@ function getDatabase() {
   return ok(db);
 }
 
-async function runMigrations() {
+function runMigrations() {
   const dbRes = getDatabase();
 
   if (dbRes.isErr()) {
     return err(dbRes.error);
   }
 
-  // fix: need to update this file to add error handling. Also looks
-  // like I'm not even checking if error or not, just continuing. Need to handle this better
+  console.log(MIGRATIONS_DIR);
 
-  if (!fs.existsSync(MIGRATIONS_DIR)) {
-    console.log("🧩 Generating migrations...");
-    await generateMigrations();
-    console.log("✅ Migrations generated!");
-    // console.log("✅ Migrations generated in", config.out);
-  }
-
-  await migrate(dbRes.value, { migrationsFolder: MIGRATIONS_DIR });
+  migrate(dbRes.value, { migrationsFolder: MIGRATIONS_DIR });
 
   return ok();
 }

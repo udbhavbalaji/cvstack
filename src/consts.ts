@@ -3,12 +3,8 @@ import { createEnv, type DefaultCombinedSchema } from "@t3-oss/env-core";
 import { config as importEnv } from "dotenv";
 import path from "node:path";
 import os from "node:os";
+import fs from "node:fs";
 import z from "zod";
-import { err, Result } from "neverthrow";
-import errors from "./core/errors";
-import { unwrap } from "./core/unwrap";
-import { safeCrash } from "./core/terminate";
-import type { CVStackError, CVStackSetupError } from "./types/errors";
 
 // HACK: No Internal imports
 
@@ -22,9 +18,37 @@ export const ENV_FILEPATH = path.join(RESOURCES_DIR, ".env");
 
 export const DATABASE_PATH = path.join(APP_DIR, "cvstack.db");
 
-export const MIGRATIONS_DIR = path.join(RESOURCES_DIR, "migrations");
+export const MIGRATIONS_DIR = path.join(
+  path.dirname(import.meta.dir),
+  "drizzle",
+);
 
 export const REQUIRED_DIRS = [APP_DIR, RESOURCES_DIR, LOG_DIR];
+
+// export const PYTHON_EXECUTABLE = path.join(
+//   import.meta.dir,
+//   "cvstack-scraper",
+//   "cvstack-scraper",
+// );
+
+export const PYTHON_EXEC_DEV = path.join(
+  path.dirname(import.meta.dir),
+  "cvstack-scraper",
+  "dist",
+  "cvstack-scraper",
+  "cvstack-scraper",
+);
+
+export const PYTHON_EXEC_PROD = path.join(
+  path.dirname(import.meta.dir),
+  "bin",
+  "cvstack-scraper",
+  "cvstack-scraper",
+);
+
+export const PYTHON_EXECUTABLE = fs.existsSync(PYTHON_EXEC_PROD)
+  ? PYTHON_EXEC_PROD
+  : PYTHON_EXEC_DEV;
 
 // Env - Lazy initialization to allow setup to run first
 

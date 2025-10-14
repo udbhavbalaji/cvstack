@@ -61,7 +61,7 @@ export async function performSetup() {
   }
 
   // 4. Run migrations
-  const migrationResult = await runMigrations();
+  const migrationResult = runMigrations();
   if (migrationResult.isErr()) {
     return err(migrationResult.error);
   }
