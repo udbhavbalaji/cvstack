@@ -148,6 +148,13 @@
       "priority": "LOW",
       "createdAt": "2025-10-14T15:06:19.539Z",
       "updatedAt": "2025-10-14T15:06:19.544Z"
+    },
+    {
+      "checked": false,
+      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-14T16:21:46.924Z",
+      "updatedAt": "2025-10-14T16:21:46.930Z"
     }
   ]
 }
