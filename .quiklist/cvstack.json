@@ -30,6 +30,13 @@
     },
     {
       "checked": true,
+      "description": "create auth prompt to get openrouter api key",
+      "priority": "HIGH",
+      "createdAt": "2025-10-14T03:08:01.599Z",
+      "updatedAt": "2025-10-14T03:55:03.435Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -65,20 +72,13 @@
     },
     {
       "checked": true,
-      "description": "create auth prompt to get openrouter api key",
-      "priority": "HIGH",
-      "createdAt": "2025-10-14T03:08:01.599Z",
-      "updatedAt": "2025-10-14T03:55:03.435Z"
+      "description": "add env command to allow users to update env variables",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-13T05:08:13.206Z",
+      "updatedAt": "2025-10-14T04:05:24.344Z"
     }
   ],
   "unchecked": [
-    {
-      "checked": false,
-      "description": "see why the migrations aren't applying when the app is first run out of the project dir",
-      "priority": "HIGH",
-      "createdAt": "2025-10-13T08:06:09.151Z",
-      "updatedAt": "2025-10-13T08:06:09.163Z"
-    },
     {
       "checked": false,
       "description": "build and test the executable to make sure that it works from anywhere in the system",
@@ -134,20 +134,6 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:11:27.306Z",
       "updatedAt": "2025-10-11T16:11:27.307Z"
-    },
-    {
-      "checked": false,
-      "description": "add spinner fail logic in the error handlers",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-13T05:06:27.875Z",
-      "updatedAt": "2025-10-13T05:06:27.885Z"
-    },
-    {
-      "checked": false,
-      "description": "add env command to allow users to update env variables",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-13T05:08:13.206Z",
-      "updatedAt": "2025-10-13T06:34:06.846Z"
     }
   ]
 }
