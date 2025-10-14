@@ -52,7 +52,7 @@ const list = new Command("list")
   .action(async (opts) => {
     await ensureSetup();
 
-    const { status, search, detailed } = opts;
+    const { status, search, d: detailed } = opts;
     let where: Partial<SelectJobModel> = {};
     let appStatus: ApplicationStatus | undefined = undefined;
 
