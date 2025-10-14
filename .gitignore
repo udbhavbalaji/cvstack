@@ -148,4 +148,5 @@ build/
 chromium/
 
 # Others
+drizzle
 test.ts
