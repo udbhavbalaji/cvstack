@@ -43,7 +43,7 @@ const list = new Command("list")
       );
     },
   )
-  .option("-d [detailed]", "Get detailed information about a job.", false)
+  .option("-d, [detailed]", "Get detailed information about a job.", false)
   .option(
     "--search",
     "Specify if you want to search for a job to view it. This will spawn a search tool to search through your jobs",
