@@ -10,6 +10,8 @@ import getDb from "@/external/db";
 import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
 import { printMultipleJobsTable, printSingleJobTable } from "@/core/table";
 import { ensureSetup } from "..";
+import { getPrintableJob } from "@/core/helpers";
+import log from "@/core/logger";
 
 const list = new Command("list")
   .description("List the jobs you've applied for.")
@@ -41,6 +43,7 @@ const list = new Command("list")
       );
     },
   )
+  .option("-d [detailed]", "Get detailed information about a job.", false)
   .option(
     "--search",
     "Specify if you want to search for a job to view it. This will spawn a search tool to search through your jobs",
@@ -49,14 +52,11 @@ const list = new Command("list")
   .action(async (opts) => {
     await ensureSetup();
 
-    console.log(opts);
-
-    const { status, search } = opts;
+    const { status, search, detailed } = opts;
     let where: Partial<SelectJobModel> = {};
     let appStatus: ApplicationStatus | undefined = undefined;
 
     if (typeof status === "boolean" && status) {
-      // if (status === "") {
       appStatus = await singleSelectPrompt(
         "Select application status you want to view: ",
         appStatuses,
@@ -64,7 +64,6 @@ const list = new Command("list")
       where.applicationStatus = appStatus;
     } else if (typeof status === "string") {
       where.applicationStatus = status.toUpperCase() as ApplicationStatus;
-      // where.applicationStatus = status.toUpperCase() as ApplicationStatus;
     }
 
     const db = getDb();
@@ -82,12 +81,27 @@ const list = new Command("list")
           additionalContext: { filters: { status } },
         }),
       );
+    } else if (jobs.length === 1) {
+      if (detailed) {
+        printSingleJobTable(jobs[0]!);
+        return;
+      } else {
+        printMultipleJobsTable([getPrintableJob(jobs[0]!)]);
+        return;
+      }
+      // printSingleJobTable(jobs[0]!);
+      // return;
     }
 
     if (search) {
       if (jobs.length === 1) {
-        printSingleJobTable(jobs[0]!);
-        return;
+        if (detailed) {
+          printSingleJobTable(jobs[0]!);
+          return;
+        } else {
+          printMultipleJobsTable([getPrintableJob(jobs[0]!)]);
+          return;
+        }
       }
 
       const job = await searchPrompt(
@@ -99,39 +113,50 @@ const list = new Command("list")
           };
         }),
       );
-      printSingleJobTable(job);
-      return;
+      if (detailed) {
+        printSingleJobTable(jobs[0]!);
+        return;
+      } else {
+        printMultipleJobsTable([getPrintableJob(jobs[0]!)]);
+        return;
+      }
     }
 
-    const printableJobs = jobs.map((job) => {
-      const {
-        jobId,
-        applicationStatus,
-        title,
-        companyName,
-        workArrangement,
-        jobType,
-        locationCity,
-        locationCountry,
-        salaryMin,
-        salaryMax,
-        salaryCurrency,
-        starred,
-      } = job;
+    // const printableJobs = jobs.map((job) => {
+    //   const {
+    //     jobId,
+    //     applicationStatus,
+    //     title,
+    //     companyName,
+    //     workArrangement,
+    //     jobType,
+    //     locationCity,
+    //     locationCountry,
+    //     salaryMin,
+    //     salaryMax,
+    //     salaryCurrency,
+    //     starred,
+    //   } = job;
+    //
+    //   return {
+    //     starred: starred ? "⭐" : "",
+    //     jobId,
+    //     title,
+    //     companyName,
+    //     jobDetails: `${jobType} - ${workArrangement}`,
+    //     location: `${locationCity === "" ? "" : `${locationCity}, `}${locationCountry}`,
+    //     salary: `Min: ${salaryMin === 0 ? "-" : salaryMin}; Max: ${salaryMax === 0 ? "-" : salaryMax} ${salaryCurrency}`,
+    //     applicationStatus,
+    //     dateApplied: job.dateApplied,
+    //   };
+    // });
+    const printableJobs = jobs.map(getPrintableJob);
 
-      return {
-        starred: starred ? "⭐" : "",
-        jobId,
-        title,
-        companyName,
-        jobDetails: `${jobType} - ${workArrangement}`,
-        location: `${locationCity === "" ? "" : `${locationCity}, `}${locationCountry}`,
-        salary: `Min: ${salaryMin === 0 ? "-" : salaryMin}; Max: ${salaryMax === 0 ? "-" : salaryMax} ${salaryCurrency}`,
-        applicationStatus,
-        dateApplied: job.dateApplied,
-      };
-    });
-
+    if (detailed) {
+      log.warn(
+        `You can only view detailed information about a single job at a time.${search ? "" : " You can try to search for it using the --search flag"}`,
+      );
+    }
     printMultipleJobsTable(printableJobs);
     return;
   });

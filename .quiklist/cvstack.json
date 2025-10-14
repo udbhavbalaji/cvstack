@@ -37,6 +37,13 @@
     },
     {
       "checked": true,
+      "description": "build and test the executable to make sure that it works from anywhere in the system",
+      "priority": "HIGH",
+      "createdAt": "2025-10-13T11:13:08.838Z",
+      "updatedAt": "2025-10-14T15:34:31.401Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -93,10 +100,10 @@
     },
     {
       "checked": true,
-      "description": "build and test the executable to make sure that it works from anywhere in the system",
+      "description": "create detailed flag to get more information about the job as well",
       "priority": "HIGH",
-      "createdAt": "2025-10-13T11:13:08.838Z",
-      "updatedAt": "2025-10-14T15:34:31.401Z"
+      "createdAt": "2025-10-14T15:37:50.197Z",
+      "updatedAt": "2025-10-14T15:53:06.534Z"
     }
   ],
   "unchecked": [
