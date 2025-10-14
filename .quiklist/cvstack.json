@@ -44,6 +44,13 @@
     },
     {
       "checked": true,
+      "description": "create detailed flag to get more information about the job as well",
+      "priority": "HIGH",
+      "createdAt": "2025-10-14T15:37:50.197Z",
+      "updatedAt": "2025-10-14T15:53:06.534Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -100,10 +107,10 @@
     },
     {
       "checked": true,
-      "description": "create detailed flag to get more information about the job as well",
-      "priority": "HIGH",
-      "createdAt": "2025-10-14T15:37:50.197Z",
-      "updatedAt": "2025-10-14T15:53:06.534Z"
+      "description": "create reset command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:12.079Z",
+      "updatedAt": "2025-10-14T16:10:47.143Z"
     }
   ],
   "unchecked": [
@@ -120,13 +127,6 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:10:06.298Z",
       "updatedAt": "2025-10-11T16:10:06.298Z"
-    },
-    {
-      "checked": false,
-      "description": "create reset command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:10:12.079Z",
-      "updatedAt": "2025-10-11T16:10:12.080Z"
     },
     {
       "checked": false,
