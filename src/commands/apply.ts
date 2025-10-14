@@ -140,7 +140,11 @@ const apply = new Command("apply")
         );
 
         await db.update
-          .details(jobId, { ...appInfo, applicationStatus: "APPLIED" })
+          .details(jobId, {
+            ...appInfo,
+            applicationStatus: "APPLIED",
+            dateApplied: new Date().toISOString(),
+          })
           .then((updateRes) => {
             // await db.update.status(jobId, "APPLIED").then((updateRes) => {
             if (updateRes.isOk()) {

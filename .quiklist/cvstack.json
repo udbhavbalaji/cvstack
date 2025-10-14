@@ -37,6 +37,13 @@
     },
     {
       "checked": true,
+      "description": "build and test the executable to make sure that it works from anywhere in the system",
+      "priority": "HIGH",
+      "createdAt": "2025-10-13T11:13:08.838Z",
+      "updatedAt": "2025-10-14T15:34:31.401Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -58,6 +65,27 @@
     },
     {
       "checked": true,
+      "description": "add env command to allow users to update env variables",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-13T05:08:13.206Z",
+      "updatedAt": "2025-10-14T04:05:24.344Z"
+    },
+    {
+      "checked": true,
+      "description": "create apply command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:09:46.785Z",
+      "updatedAt": "2025-10-14T15:34:06.063Z"
+    },
+    {
+      "checked": true,
+      "description": "create list command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:09:53.669Z",
+      "updatedAt": "2025-10-14T15:34:06.065Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -72,34 +100,13 @@
     },
     {
       "checked": true,
-      "description": "add env command to allow users to update env variables",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-13T05:08:13.206Z",
-      "updatedAt": "2025-10-14T04:05:24.344Z"
+      "description": "create detailed flag to get more information about the job as well",
+      "priority": "HIGH",
+      "createdAt": "2025-10-14T15:37:50.197Z",
+      "updatedAt": "2025-10-14T15:53:06.534Z"
     }
   ],
   "unchecked": [
-    {
-      "checked": false,
-      "description": "build and test the executable to make sure that it works from anywhere in the system",
-      "priority": "HIGH",
-      "createdAt": "2025-10-13T11:13:08.838Z",
-      "updatedAt": "2025-10-13T11:13:08.853Z"
-    },
-    {
-      "checked": false,
-      "description": "create apply command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:09:46.785Z",
-      "updatedAt": "2025-10-11T16:09:46.785Z"
-    },
-    {
-      "checked": false,
-      "description": "create list command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:09:53.669Z",
-      "updatedAt": "2025-10-11T16:09:53.669Z"
-    },
     {
       "checked": false,
       "description": "create stats command",
@@ -134,6 +141,13 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-11T16:11:27.306Z",
       "updatedAt": "2025-10-11T16:11:27.307Z"
+    },
+    {
+      "checked": false,
+      "description": "modify workflow so that as soon as app-setup is done, if API key is missing, then throw",
+      "priority": "LOW",
+      "createdAt": "2025-10-14T15:06:19.539Z",
+      "updatedAt": "2025-10-14T15:06:19.544Z"
     }
   ]
 }
