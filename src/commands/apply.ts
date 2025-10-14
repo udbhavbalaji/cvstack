@@ -39,7 +39,11 @@ const apply = new Command("apply")
     "-i, --id [id]",
     "Linkedin job ID of the job you're applying for. Use 'cvstack show' to find the ID for a job already added. Otherwise, id can be found from the Url (https://www.linkedin.com/jobs/view/<job_id>)",
     (value) => {
-      const jobId = parseSchema(z.coerce.number(), value, "cli");
+      const jobId = parseSchema(
+        z.coerce.number("Enter a valid Linkedin Job Id"),
+        value,
+        "cli",
+      );
 
       return jobId;
     },
