@@ -169,14 +169,11 @@ function getDbApi() {
           `db:query:toggleStarred:id=${jobId}:current_starred=${currentStarred}`,
         ),
       details: (jobId: number, set: UpdateJobDetailsModel) =>
-        unwrapAsync(
-          ResultAsync.fromPromise(_db.update.details(jobId, set), (err) =>
-            errors.handle.databaseError(err, "db:update:details", {
-              jobId,
-              set,
-            }),
-          ),
-          "db:update:details",
+        ResultAsync.fromPromise(_db.update.details(jobId, set), (err) =>
+          errors.handle.databaseError(err, "db:update:details", {
+            jobId,
+            set,
+          }),
         ),
     },
     delete: {

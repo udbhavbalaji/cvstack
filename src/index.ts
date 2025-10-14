@@ -8,6 +8,7 @@ import { setupCustomHelp } from "./core/help";
 import log from "./core/logger";
 import add from "./commands/add";
 import aiAuth from "./commands/ai-auth";
+import apply from "./commands/apply";
 
 async function createCLI(
   appVersion: string,
@@ -28,6 +29,7 @@ async function createCLI(
 
   // add other commands here
   app.addCommand(add);
+  app.addCommand(apply);
   app.addCommand(aiAuth);
 
   app.action(async () => {

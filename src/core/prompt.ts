@@ -239,7 +239,11 @@ async function getAppInfo(jobUrl: string) {
     );
   }
 
-  return { referral, appMethod, applicationLink };
+  return {
+    referral,
+    appMethod: appMethod ? ("Linkedin" as const) : ("Other" as const),
+    applicationLink,
+  };
 }
 
 export { getAppInfo };
