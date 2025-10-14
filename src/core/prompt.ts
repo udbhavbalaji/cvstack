@@ -116,6 +116,23 @@ async function _unsafeFormPrompt<T>(
   return response.result;
 }
 
+async function _unsafePasswordPrompt(message: string) {
+  const response = await prompt<{ result: string }>({
+    type: "password",
+    name: "result",
+    message,
+  });
+
+  return response.result;
+}
+
+export const passwordPrompt = (message: string) =>
+  unwrapAsync(
+    ResultAsync.fromPromise(_unsafePasswordPrompt(message), (err) =>
+      errors.handle.promptError(err, "passwordPrompt", { message }),
+    ),
+  );
+
 export const confirmPrompt = (message: string, defaultValue: boolean) =>
   unwrapAsync(
     ResultAsync.fromPromise(
