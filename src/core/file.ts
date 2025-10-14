@@ -4,6 +4,7 @@ import fs from "node:fs";
 
 // Internal imports
 import errors from "@/core/errors";
+import { ENV_FILEPATH } from "@/consts";
 
 const writeLog = (logFilepath: string, logMessage: string) =>
   Result.fromThrowable(
@@ -19,4 +20,10 @@ const writeLogAsync = (logFilepath: string, logMessage: string) =>
       errors.handle.fileError(err, "writeLogAsync", [logFilepath, logMessage]),
   );
 
-export { writeLog, writeLogAsync };
+const writeEnvFile = (content: string) =>
+  ResultAsync.fromPromise(
+    Bun.write(ENV_FILEPATH, content, { createPath: true }),
+    (err) => errors.handle.fileError(err, "createEnvFile"),
+  );
+
+export { writeLog, writeLogAsync, writeEnvFile };
