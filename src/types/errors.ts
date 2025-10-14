@@ -48,6 +48,11 @@ export type CVStackShellError = BaseCVStackError & {
   _type: "shell";
 };
 
+export type CVStackFatalError = Omit<BaseCVStackError, "safe"> & {
+  _type: "fatal";
+  safe: false;
+};
+
 export type CVStackError =
   | CVStackDatabaseError
   | CVStackUnknownError
@@ -57,4 +62,5 @@ export type CVStackError =
   | CVStackAIError
   | CVStackSetupError
   | CVStackPromptError
+  | CVStackFatalError
   | CVStackFileError;
