@@ -9,6 +9,7 @@ import log from "./core/logger";
 import add from "./commands/add";
 import aiAuth from "./commands/ai-auth";
 import apply from "./commands/apply";
+import list from "./commands/list";
 
 async function createCLI(
   appVersion: string,
@@ -30,6 +31,7 @@ async function createCLI(
   // add other commands here
   app.addCommand(add);
   app.addCommand(apply);
+  app.addCommand(list);
   app.addCommand(aiAuth);
 
   app.action(async () => {

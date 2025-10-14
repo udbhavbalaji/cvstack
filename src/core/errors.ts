@@ -102,6 +102,7 @@ const handle = {
           message: "Invalid environment variables",
           safe: false,
           location: fnName,
+          additionalContext,
         };
       }
     }
@@ -166,7 +167,7 @@ const handle = {
   ): CVStackError => {
     if (isCVStackError(err)) {
       return err;
-    } else if (err instanceof Error) {
+    } else {
       return {
         _type: "prompt",
         name: "CVStackPromptError",
@@ -175,8 +176,6 @@ const handle = {
         location: fnName,
         additionalContext,
       };
-    } else {
-      return handle.unknownError(err, fnName, additionalContext);
     }
   },
   databaseError: (

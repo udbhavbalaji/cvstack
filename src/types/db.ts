@@ -22,5 +22,6 @@ export type UpdateJobDetailsModel = Partial<
     | "referral"
     | "appMethod"
     | "applicationLink"
+    | "dateApplied"
   >
 >;
