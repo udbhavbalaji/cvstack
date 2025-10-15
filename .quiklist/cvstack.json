@@ -100,6 +100,13 @@
     },
     {
       "checked": true,
+      "description": "create star command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:06.298Z",
+      "updatedAt": "2025-10-14T23:16:27.275Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -114,19 +121,19 @@
     },
     {
       "checked": true,
-      "description": "create star command",
+      "description": "create stats command",
       "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:10:06.298Z",
-      "updatedAt": "2025-10-14T23:16:27.275Z"
+      "createdAt": "2025-10-11T16:10:03.818Z",
+      "updatedAt": "2025-10-15T19:02:14.409Z"
     }
   ],
   "unchecked": [
     {
       "checked": false,
-      "description": "create stats command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:10:03.818Z",
-      "updatedAt": "2025-10-11T16:10:03.819Z"
+      "description": "update the example commands shown in the help text",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T19:00:20.076Z",
+      "updatedAt": "2025-10-15T19:00:20.080Z"
     },
     {
       "checked": false,
@@ -148,6 +155,13 @@
       "priority": "MEDIUM",
       "createdAt": "2025-10-14T16:21:46.924Z",
       "updatedAt": "2025-10-14T16:21:46.930Z"
+    },
+    {
+      "checked": false,
+      "description": "only include the date part of date applied in printable job",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-15T18:23:43.921Z",
+      "updatedAt": "2025-10-15T18:23:43.928Z"
     },
     {
       "checked": false,

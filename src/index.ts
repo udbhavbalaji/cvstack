@@ -12,6 +12,7 @@ import apply from "./commands/apply";
 import list from "./commands/list";
 import reset from "./commands/reset";
 import star from "./commands/star";
+import stats from "./commands/stats";
 
 async function createCLI(
   appVersion: string,
@@ -34,6 +35,7 @@ async function createCLI(
   app.addCommand(add);
   app.addCommand(apply);
   app.addCommand(list);
+  app.addCommand(stats);
   app.addCommand(star);
   app.addCommand(reset);
   app.addCommand(aiAuth);
