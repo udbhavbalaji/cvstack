@@ -17,7 +17,7 @@ const create = {
     return {
       _type: "zod",
       name: `CVStack${capitalize(source)}ZodError`,
-      message: err.message,
+      message: JSON.parse(err.message)[0].message,
       location: fnName,
       safe: source === "cli",
       issues: err.issues,
