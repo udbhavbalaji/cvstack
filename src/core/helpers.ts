@@ -1,5 +1,6 @@
 // External imports
 import { Result } from "neverthrow";
+import clipboard from "clipboardy";
 
 // Internal imports
 import errors from "@/core/errors";
@@ -33,6 +34,10 @@ export function urlValidator(url: string, type: "linkedin" | "other") {
   return res.success
     ? res.success
     : `${res.error.issues[0]?.path}: ${res.error.issues[0]?.message}`;
+}
+
+export async function copytoClipboard(text: string) {
+  return await clipboard.write(text);
 }
 
 export function getPrintableJob(job: SelectJobModel) {
