@@ -13,6 +13,7 @@ import list from "./commands/list";
 import reset from "./commands/reset";
 import star from "./commands/star";
 import stats from "./commands/stats";
+import search from "./commands/search";
 
 async function createCLI(
   appVersion: string,
@@ -34,6 +35,7 @@ async function createCLI(
   // add other commands here
   app.addCommand(add);
   app.addCommand(apply);
+  app.addCommand(search);
   app.addCommand(list);
   app.addCommand(stats);
   app.addCommand(star);

@@ -109,12 +109,7 @@ export const getEnv = () => {
   return _env;
 };
 
-// Backward compatibility - will be removed later
-// export const env = new Proxy({} as ReturnType<typeof createEnv>, {
-//   get(target, prop) {
-//     return getEnv()[prop as keyof ReturnType<typeof createEnv>];
-//   },
-// });
+export const linkedinBaseUrl = "https://www.linkedin.com/jobs/view";
 
 // App Constants
 
