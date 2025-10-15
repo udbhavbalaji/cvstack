@@ -107,6 +107,20 @@
     },
     {
       "checked": true,
+      "description": "create stats command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:10:03.818Z",
+      "updatedAt": "2025-10-15T19:02:14.409Z"
+    },
+    {
+      "checked": true,
+      "description": "create search command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:11:27.306Z",
+      "updatedAt": "2025-10-15T19:52:54.413Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -121,10 +135,10 @@
     },
     {
       "checked": true,
-      "description": "create stats command",
+      "description": "create edit command",
       "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:10:03.818Z",
-      "updatedAt": "2025-10-15T19:02:14.409Z"
+      "createdAt": "2025-10-11T16:11:22.676Z",
+      "updatedAt": "2025-10-15T20:33:55.736Z"
     }
   ],
   "unchecked": [
@@ -137,17 +151,18 @@
     },
     {
       "checked": false,
-      "description": "create edit command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:11:22.676Z",
-      "updatedAt": "2025-10-11T16:11:22.676Z"
+      "description": "create summarize command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T19:52:49.208Z",
+      "updatedAt": "2025-10-15T19:52:49.218Z"
     },
     {
       "checked": false,
-      "description": "create search command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:11:27.306Z",
-      "updatedAt": "2025-10-11T16:11:27.307Z"
+      "description": "remove updating status from the edit command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T20:33:08.725Z",
+      "updatedAt": "2025-10-15T20:33:25.403Z",
+      "deadline": "2025-10-15T00:00:00.000Z"
     },
     {
       "checked": false,

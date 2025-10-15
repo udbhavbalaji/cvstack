@@ -6,11 +6,10 @@ import { ensureSetup } from "@/index";
 import getDb from "@/external/db";
 import { safeCrash } from "@/core/terminate";
 import { err } from "neverthrow";
-import { formPrompt, searchPrompt, singleSelectPrompt } from "@/core/prompt";
+import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
 import { copytoClipboard } from "@/core/helpers";
 import { linkedinBaseUrl } from "@/consts";
-import type { UpdateJobDetailsModel } from "@/types/db";
-import log from "@/core/logger";
+import { editAction } from "./edit";
 
 const search = new Command("search")
   .description("Search for a saved job and perform actions on it")
@@ -73,63 +72,7 @@ const search = new Command("search")
       }
 
       case "Edit application details": {
-        // todo: details i want to allow editing
-        // 1. title
-        // 2. company name
-        // 3. location
-        // 4. application status
-        // 5. referral
-        // 6. application link
-        // 7. application method
-
-        const choices = [
-          { name: "title", message: "Title", initial: job.title },
-          {
-            name: "companyName",
-            message: "Company Name",
-            initial: job.companyName,
-          },
-          {
-            name: "locationCity",
-            message: "City",
-            initial: job.locationCity ?? "",
-          },
-          {
-            name: "locationCountry",
-            message: "Country",
-            initial: job.locationCountry,
-          },
-          {
-            name: "applicationStatus",
-            message: "Status",
-            initial: job.applicationStatus,
-          },
-          {
-            name: "referral",
-            message: "Referrer Name",
-            initial: job.referral ?? "",
-          },
-          {
-            name: "applicationLink",
-            message: "Application Link",
-            initial: job.applicationLink,
-          },
-          {
-            name: "appMethod",
-            message: "Application Method",
-            initial: job.appMethod,
-          },
-        ];
-
-        const editedDetails = await formPrompt(
-          "Go through the form to edit the details of the job application:\n\n",
-          choices,
-        );
-
-        await db.update
-          .details(job.jobId, editedDetails as UpdateJobDetailsModel)
-          .then(() => log.info("Successfully updated the job details"));
-
+        await editAction(job, db.update.details);
         break;
       }
 
