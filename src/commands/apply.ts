@@ -172,7 +172,7 @@ const apply = new Command("apply")
         ...jobAnalysis,
         jobId: jobId,
         referral: appInfo.referral,
-        appMethod: appInfo.appMethod ? "Company's Job Portal" : "Linkedin",
+        appMethod: appInfo.appMethod ? "Linkedin" : "Company's Job Portal",
         applicationLink: appInfo.applicationLink,
         applicationStatus: "APPLIED",
         dateApplied: new Date().toISOString(),

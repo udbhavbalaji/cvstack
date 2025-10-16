@@ -51,6 +51,13 @@
     },
     {
       "checked": true,
+      "description": "update the example commands shown in the help text",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T19:00:20.076Z",
+      "updatedAt": "2025-10-16T03:14:50.893Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -142,10 +149,10 @@
     },
     {
       "checked": true,
-      "description": "update the example commands shown in the help text",
-      "priority": "HIGH",
-      "createdAt": "2025-10-15T19:00:20.076Z",
-      "updatedAt": "2025-10-16T03:14:50.893Z"
+      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-14T16:21:46.924Z",
+      "updatedAt": "2025-10-16T03:32:58.698Z"
     }
   ],
   "unchecked": [
@@ -166,10 +173,10 @@
     },
     {
       "checked": false,
-      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-14T16:21:46.924Z",
-      "updatedAt": "2025-10-14T16:21:46.930Z"
+      "description": "fix the parallel prompting, seems that enquirer doesn't render the prompt while the spinner is spinning",
+      "priority": "HIGH",
+      "createdAt": "2025-10-16T03:26:05.919Z",
+      "updatedAt": "2025-10-16T03:26:05.926Z"
     },
     {
       "checked": false,
