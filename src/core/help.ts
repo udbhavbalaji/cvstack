@@ -42,7 +42,6 @@ function formatHelp(cmd: Command): string {
   const aliases = (cmd as any)._aliases || [];
 
   let help = "\n";
-  // help += chalk.hex(colours.purple)("_".repeat(60)) + "\n\n";
 
   // Usage section
   help += chalk.hex(colours.cyan).bold("USAGE:\n");
@@ -97,7 +96,6 @@ function formatHelp(cmd: Command): string {
         chalk.hex(colours.cyan)(name.padEnd(25)) +
         " " +
         chalk.hex(colours.lighterGray)(wrapAndIndent(desc, 28, 100)) +
-        // chalk.hex(colours.lighterGray)(desc) +
         "\n";
     });
     help += "\n";
@@ -119,7 +117,6 @@ function formatHelp(cmd: Command): string {
         chalk.hex(colours.purple)(argName.padEnd(25)) +
         " " +
         chalk.hex(colours.lighterGray)(wrapAndIndent(desc, 28, 100)) +
-        // chalk.hex(colours.lighterGray)(desc) +
         "\n";
     });
     help += "\n";
@@ -157,17 +154,15 @@ function formatHelp(cmd: Command): string {
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(
-        `${cmd.name()} apply -u https://www.linkedin.com/jobs/view/1234567890`,
-      ) +
-      "          " +
+      chalk.hex(colours.cyan)(`${cmd.name()} apply -i 1234567890`.padEnd(35)) +
+      " " +
       chalk.hex(colours.lightGray)("# Apply for a job!\n");
     help +=
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} stats -d`) +
-      "         " +
+      chalk.hex(colours.cyan)(`${cmd.name()} stats -d`.padEnd(35)) +
+      " " +
       chalk.hex(colours.lightGray)(
         "# View your job application stats in detail\n",
       );
@@ -175,8 +170,9 @@ function formatHelp(cmd: Command): string {
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} search`) +
-      "        " +
+      // chalk.hex(colours.cyan)(`${cmd.name()} search`) +
+      chalk.hex(colours.cyan)(`${cmd.name()} search`.padEnd(35)) +
+      " " +
       chalk.hex(colours.lightGray)(
         "# Search for a job to perform an action on it\n",
       );

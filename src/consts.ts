@@ -48,6 +48,8 @@ export const ApiKeySchema = z
   .string("Enter a valid OpenRouter API key")
   .startsWith("sk-", "Enter a valid OpenRouter API key");
 
+export const SETUP_COMPLETE_FILEPATH = path.join(APP_DIR, ".setup-complete");
+
 // Env - Lazy initialization to allow setup to run first
 
 let _env: ReturnType<
@@ -78,7 +80,9 @@ export const getEnv = () => {
   if (!_env) {
     _env = createEnv({
       server: {
-        OPENROUTER_API_KEY: ApiKeySchema.optional(),
+        OPENROUTER_API_KEY: fs.existsSync(SETUP_COMPLETE_FILEPATH)
+          ? ApiKeySchema
+          : ApiKeySchema.optional(),
         BUN_ENV: z
           .literal(
             "development",
@@ -98,7 +102,9 @@ export const getEnv = () => {
         console.error(message);
 
         console.error(
-          "Environment isn't valid. Run 'cvstack env' to update your env variables",
+          "Environment isn't valid. Run 'cvstack ai-auth' to update your API Key",
+          // NOTE: cvstack env will be implmented when there are more than 1 env vars
+          // "Environment isn't valid. Run 'cvstack env' to update your env variables",
         );
         process.exit(1);
       },
