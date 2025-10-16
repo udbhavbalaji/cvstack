@@ -44,6 +44,7 @@ const list = new Command("list")
     },
   )
   .option("-d, [detailed]", "Get detailed information about a job.", false)
+  .option("--star, [star]", "Get jobs that have been starree", false)
   .option(
     "--search",
     "Specify if you want to search for a job to view it. This will spawn a search tool to search through your jobs",
@@ -52,7 +53,7 @@ const list = new Command("list")
   .action(async (opts) => {
     await ensureSetup();
 
-    const { status, search, d: detailed } = opts;
+    const { status, search, d: detailed, star } = opts;
     let where: Partial<SelectJobModel> = {};
     let appStatus: ApplicationStatus | undefined = undefined;
 
@@ -65,6 +66,8 @@ const list = new Command("list")
     } else if (typeof status === "string") {
       where.applicationStatus = status.toUpperCase() as ApplicationStatus;
     }
+
+    if (star) where.starred = true;
 
     const db = getDb();
 

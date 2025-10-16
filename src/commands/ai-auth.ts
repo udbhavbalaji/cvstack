@@ -2,8 +2,8 @@ import { Command } from "commander";
 import { ensureSetup } from "@/index";
 import { passwordPrompt } from "@/core/prompt";
 import { parseSchema } from "@/core/zod/parse";
-import { ApiKeySchema } from "@/consts";
-import { writeEnvFile } from "@/core/file";
+import { ApiKeySchema, ENV_FILEPATH } from "@/consts";
+import { writeFile } from "@/core/file";
 import { unwrapAsync } from "@/core/unwrap";
 import log from "@/core/logger";
 
@@ -22,7 +22,7 @@ const aiAuth = new Command("ai-auth")
 OPENROUTER_API_KEY="${validatedResult}"
     `;
 
-    await unwrapAsync(writeEnvFile(envContent)).then(() =>
+    await unwrapAsync(writeFile(ENV_FILEPATH, envContent)).then(() =>
       log.info("Updated API key!"),
     );
   });

@@ -164,18 +164,17 @@ const apply = new Command("apply")
 
       const jobAnalysisPromise = getJobAnalysis(jobUrl, env);
 
-      const appInfo = await getAppInfo(jobUrl);
-
       const jobAnalysis = await jobAnalysisPromise;
+      const appInfo = await getAppInfo(jobUrl);
 
       const jobRecord: InsertJobModel = {
         ...jobAnalysis,
         jobId: jobId,
         referral: appInfo.referral,
-        appMethod: appInfo.appMethod ? "Company's Job Portal" : "Linkedin",
+        appMethod: appInfo.appMethod ? "Linkedin" : "Company's Job Portal",
         applicationLink: appInfo.applicationLink,
         applicationStatus: "APPLIED",
-        dateApplied: new Date().toISOString(),
+        dateApplied: new Date().toISOString().split("T")![0]!,
       };
 
       printSingleJobTable(jobRecord);

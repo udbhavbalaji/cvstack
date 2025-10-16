@@ -39,8 +39,6 @@ function runMigrations() {
     return err(dbRes.error);
   }
 
-  console.log(MIGRATIONS_DIR);
-
   migrate(dbRes.value, { migrationsFolder: MIGRATIONS_DIR });
 
   return ok();

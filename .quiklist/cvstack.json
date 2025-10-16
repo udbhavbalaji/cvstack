@@ -51,6 +51,28 @@
     },
     {
       "checked": true,
+      "description": "update the example commands shown in the help text",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T19:00:20.076Z",
+      "updatedAt": "2025-10-16T03:14:50.893Z"
+    },
+    {
+      "checked": true,
+      "description": "remove updating status from the edit command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T20:33:08.725Z",
+      "updatedAt": "2025-10-16T03:58:19.739Z",
+      "deadline": "2025-10-15T00:00:00.000Z"
+    },
+    {
+      "checked": true,
+      "description": "fix the parallel prompting, seems that enquirer doesn't render the prompt while the spinner is spinning",
+      "priority": "HIGH",
+      "createdAt": "2025-10-16T03:26:05.919Z",
+      "updatedAt": "2025-10-16T18:19:39.603Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -121,6 +143,27 @@
     },
     {
       "checked": true,
+      "description": "create edit command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:11:22.676Z",
+      "updatedAt": "2025-10-15T20:33:55.736Z"
+    },
+    {
+      "checked": true,
+      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-14T16:21:46.924Z",
+      "updatedAt": "2025-10-16T03:32:58.698Z"
+    },
+    {
+      "checked": true,
+      "description": "only include the date part of date applied in printable job",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-15T18:23:43.921Z",
+      "updatedAt": "2025-10-16T04:11:16.600Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -135,55 +178,19 @@
     },
     {
       "checked": true,
-      "description": "create edit command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:11:22.676Z",
-      "updatedAt": "2025-10-15T20:33:55.736Z"
+      "description": "modify workflow so that as soon as app-setup is done, if API key is missing, then throw",
+      "priority": "LOW",
+      "createdAt": "2025-10-14T15:06:19.539Z",
+      "updatedAt": "2025-10-16T19:24:30.261Z"
     }
   ],
   "unchecked": [
-    {
-      "checked": false,
-      "description": "update the example commands shown in the help text",
-      "priority": "HIGH",
-      "createdAt": "2025-10-15T19:00:20.076Z",
-      "updatedAt": "2025-10-15T19:00:20.080Z"
-    },
     {
       "checked": false,
       "description": "create summarize command",
       "priority": "HIGH",
       "createdAt": "2025-10-15T19:52:49.208Z",
       "updatedAt": "2025-10-15T19:52:49.218Z"
-    },
-    {
-      "checked": false,
-      "description": "remove updating status from the edit command",
-      "priority": "HIGH",
-      "createdAt": "2025-10-15T20:33:08.725Z",
-      "updatedAt": "2025-10-15T20:33:25.403Z",
-      "deadline": "2025-10-15T00:00:00.000Z"
-    },
-    {
-      "checked": false,
-      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-14T16:21:46.924Z",
-      "updatedAt": "2025-10-14T16:21:46.930Z"
-    },
-    {
-      "checked": false,
-      "description": "only include the date part of date applied in printable job",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-15T18:23:43.921Z",
-      "updatedAt": "2025-10-15T18:23:43.928Z"
-    },
-    {
-      "checked": false,
-      "description": "modify workflow so that as soon as app-setup is done, if API key is missing, then throw",
-      "priority": "LOW",
-      "createdAt": "2025-10-14T15:06:19.539Z",
-      "updatedAt": "2025-10-14T15:06:19.544Z"
     }
   ]
 }

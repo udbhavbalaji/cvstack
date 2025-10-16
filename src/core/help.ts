@@ -42,7 +42,6 @@ function formatHelp(cmd: Command): string {
   const aliases = (cmd as any)._aliases || [];
 
   let help = "\n";
-  // help += chalk.hex(colours.purple)("_".repeat(60)) + "\n\n";
 
   // Usage section
   help += chalk.hex(colours.cyan).bold("USAGE:\n");
@@ -97,7 +96,6 @@ function formatHelp(cmd: Command): string {
         chalk.hex(colours.cyan)(name.padEnd(25)) +
         " " +
         chalk.hex(colours.lighterGray)(wrapAndIndent(desc, 28, 100)) +
-        // chalk.hex(colours.lighterGray)(desc) +
         "\n";
     });
     help += "\n";
@@ -119,7 +117,6 @@ function formatHelp(cmd: Command): string {
         chalk.hex(colours.purple)(argName.padEnd(25)) +
         " " +
         chalk.hex(colours.lighterGray)(wrapAndIndent(desc, 28, 100)) +
-        // chalk.hex(colours.lighterGray)(desc) +
         "\n";
     });
     help += "\n";
@@ -157,23 +154,28 @@ function formatHelp(cmd: Command): string {
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} init`) +
-      "          " +
-      chalk.hex(colours.lightGray)("# Initialize a new CV\n");
+      chalk.hex(colours.cyan)(`${cmd.name()} apply -i 1234567890`.padEnd(35)) +
+      " " +
+      chalk.hex(colours.lightGray)("# Apply for a job!\n");
     help +=
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} build`) +
-      "         " +
-      chalk.hex(colours.lightGray)("# Build your CV\n");
+      chalk.hex(colours.cyan)(`${cmd.name()} stats -d`.padEnd(35)) +
+      " " +
+      chalk.hex(colours.lightGray)(
+        "# View your job application stats in detail\n",
+      );
     help +=
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} --help`) +
-      "        " +
-      chalk.hex(colours.lightGray)("# Show this help\n");
+      // chalk.hex(colours.cyan)(`${cmd.name()} search`) +
+      chalk.hex(colours.cyan)(`${cmd.name()} search`.padEnd(35)) +
+      " " +
+      chalk.hex(colours.lightGray)(
+        "# Search for a job to perform an action on it\n",
+      );
     help += "\n";
   }
 
@@ -188,7 +190,7 @@ function setupCustomHelp(program: Command): void {
 
   // Override addCommand to automatically apply custom help
   const originalAddCommand = program.addCommand.bind(program);
-  program.addCommand = function(cmd: Command): Command {
+  program.addCommand = function (cmd: Command): Command {
     cmd.configureHelp({
       formatHelp: (c) => formatHelp(c),
     });

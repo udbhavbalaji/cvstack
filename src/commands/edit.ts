@@ -98,6 +98,7 @@ export async function editAction(
       name: "applicationStatus",
       message: "Status",
       initial: job.applicationStatus,
+      disabled: true,
     },
     {
       name: "referral",
