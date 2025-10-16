@@ -135,6 +135,13 @@
     },
     {
       "checked": true,
+      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-14T16:21:46.924Z",
+      "updatedAt": "2025-10-16T03:32:58.698Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -149,10 +156,11 @@
     },
     {
       "checked": true,
-      "description": "include starred as a filter within the list command to allow users to view amd search through their starred jobs",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-14T16:21:46.924Z",
-      "updatedAt": "2025-10-16T03:32:58.698Z"
+      "description": "remove updating status from the edit command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T20:33:08.725Z",
+      "updatedAt": "2025-10-16T03:58:19.739Z",
+      "deadline": "2025-10-15T00:00:00.000Z"
     }
   ],
   "unchecked": [
@@ -162,14 +170,6 @@
       "priority": "HIGH",
       "createdAt": "2025-10-15T19:52:49.208Z",
       "updatedAt": "2025-10-15T19:52:49.218Z"
-    },
-    {
-      "checked": false,
-      "description": "remove updating status from the edit command",
-      "priority": "HIGH",
-      "createdAt": "2025-10-15T20:33:08.725Z",
-      "updatedAt": "2025-10-15T20:33:25.403Z",
-      "deadline": "2025-10-15T00:00:00.000Z"
     },
     {
       "checked": false,
