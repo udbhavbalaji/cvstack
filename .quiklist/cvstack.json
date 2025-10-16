@@ -58,6 +58,14 @@
     },
     {
       "checked": true,
+      "description": "remove updating status from the edit command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-15T20:33:08.725Z",
+      "updatedAt": "2025-10-16T03:58:19.739Z",
+      "deadline": "2025-10-15T00:00:00.000Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -156,11 +164,10 @@
     },
     {
       "checked": true,
-      "description": "remove updating status from the edit command",
-      "priority": "HIGH",
-      "createdAt": "2025-10-15T20:33:08.725Z",
-      "updatedAt": "2025-10-16T03:58:19.739Z",
-      "deadline": "2025-10-15T00:00:00.000Z"
+      "description": "only include the date part of date applied in printable job",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-15T18:23:43.921Z",
+      "updatedAt": "2025-10-16T04:11:16.600Z"
     }
   ],
   "unchecked": [
@@ -177,13 +184,6 @@
       "priority": "HIGH",
       "createdAt": "2025-10-16T03:26:05.919Z",
       "updatedAt": "2025-10-16T03:26:05.926Z"
-    },
-    {
-      "checked": false,
-      "description": "only include the date part of date applied in printable job",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-15T18:23:43.921Z",
-      "updatedAt": "2025-10-15T18:23:43.928Z"
     },
     {
       "checked": false,
