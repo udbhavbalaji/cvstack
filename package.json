@@ -4,7 +4,7 @@
   "description": "A simple CLI tool to help track job applications!",
   "module": "index.ts",
   "bin": {
-    "cvstack": "dist/bin/cli.js"
+    "cvstack": "dist/bin/entry.js"
   },
   "scripts": {
     "dev": "BUN_ENV=development bun run bin/cli.ts",

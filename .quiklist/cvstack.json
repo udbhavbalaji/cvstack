@@ -182,6 +182,13 @@
       "priority": "LOW",
       "createdAt": "2025-10-14T15:06:19.539Z",
       "updatedAt": "2025-10-16T19:24:30.261Z"
+    },
+    {
+      "checked": true,
+      "description": "handle cases where user doesn't have bun installed",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-16T22:46:27.815Z",
+      "updatedAt": "2025-10-16T22:46:34.728Z"
     }
   ],
   "unchecked": [

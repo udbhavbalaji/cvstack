@@ -11,9 +11,7 @@ import {
   SETUP_COMPLETE_FILEPATH,
 } from "@/consts";
 import { createDatabase, runMigrations } from "@/external/db/client";
-import { err, ok, Result, ResultAsync } from "neverthrow";
-import errors from "./errors";
-import log from "./logger";
+import { err, ok } from "neverthrow";
 import { createDirectories, writeFile } from "./file";
 import yoctoSpinner from "yocto-spinner";
 
@@ -115,18 +113,24 @@ export async function performSetup() {
   return ok();
 }
 
-// function _createDirectories(dirs: string[]) {
-//   for (const dir of dirs) {
-//     if (!fs.existsSync(dir)) {
-//       log.info(`Creating directory: ${dir}`);
-//       fs.mkdirSync(dir, { recursive: true });
-//       log.info(`✓ Created: ${dir}`);
-//     }
+// export function ensureBuntime() {
+//   const isBun = typeof Bun !== undefined && Bun.version;
+//
+//   if (!isBun) {
+//     console.error(`
+// ❌ This CLI requires Bun to run.
+//
+// You can install Bun by running:
+//
+//   curl -fsSL https://bun.sh/install | bash
+//        (or)
+//   npm install -g bun
+//
+//   > Read more at: https://bun.com/
+//
+// Once installed, you can use cvstack by running:
+//   cvstack|cvs --help
+// `);
+//     process.exit(1);
 //   }
 // }
-//
-// const createDirectories = (dirs: string[] = REQUIRED_DIRS) =>
-//   Result.fromThrowable(
-//     () => _createDirectories(dirs),
-//     (err) => errors.handle.fileError(err, "createDirectories", { dirs }),
-//   )();
