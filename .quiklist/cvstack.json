@@ -150,6 +150,13 @@
     },
     {
       "checked": true,
+      "description": "only include the date part of date applied in printable job",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-15T18:23:43.921Z",
+      "updatedAt": "2025-10-16T04:11:16.600Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -164,10 +171,10 @@
     },
     {
       "checked": true,
-      "description": "only include the date part of date applied in printable job",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-15T18:23:43.921Z",
-      "updatedAt": "2025-10-16T04:11:16.600Z"
+      "description": "fix the parallel prompting, seems that enquirer doesn't render the prompt while the spinner is spinning",
+      "priority": "HIGH",
+      "createdAt": "2025-10-16T03:26:05.919Z",
+      "updatedAt": "2025-10-16T18:19:39.603Z"
     }
   ],
   "unchecked": [
@@ -177,13 +184,6 @@
       "priority": "HIGH",
       "createdAt": "2025-10-15T19:52:49.208Z",
       "updatedAt": "2025-10-15T19:52:49.218Z"
-    },
-    {
-      "checked": false,
-      "description": "fix the parallel prompting, seems that enquirer doesn't render the prompt while the spinner is spinning",
-      "priority": "HIGH",
-      "createdAt": "2025-10-16T03:26:05.919Z",
-      "updatedAt": "2025-10-16T03:26:05.926Z"
     },
     {
       "checked": false,

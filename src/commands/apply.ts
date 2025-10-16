@@ -164,9 +164,8 @@ const apply = new Command("apply")
 
       const jobAnalysisPromise = getJobAnalysis(jobUrl, env);
 
-      const appInfo = await getAppInfo(jobUrl);
-
       const jobAnalysis = await jobAnalysisPromise;
+      const appInfo = await getAppInfo(jobUrl);
 
       const jobRecord: InsertJobModel = {
         ...jobAnalysis,
