@@ -157,23 +157,29 @@ function formatHelp(cmd: Command): string {
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} init`) +
+      chalk.hex(colours.cyan)(
+        `${cmd.name()} apply -u https://www.linkedin.com/jobs/view/1234567890`,
+      ) +
       "          " +
-      chalk.hex(colours.lightGray)("# Initialize a new CV\n");
+      chalk.hex(colours.lightGray)("# Apply for a job!\n");
     help +=
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} build`) +
+      chalk.hex(colours.cyan)(`${cmd.name()} stats -d`) +
       "         " +
-      chalk.hex(colours.lightGray)("# Build your CV\n");
+      chalk.hex(colours.lightGray)(
+        "# View your job application stats in detail\n",
+      );
     help +=
       "  " +
       chalk.hex(colours.greenishCyan)("$") +
       " " +
-      chalk.hex(colours.cyan)(`${cmd.name()} --help`) +
+      chalk.hex(colours.cyan)(`${cmd.name()} search`) +
       "        " +
-      chalk.hex(colours.lightGray)("# Show this help\n");
+      chalk.hex(colours.lightGray)(
+        "# Search for a job to perform an action on it\n",
+      );
     help += "\n";
   }
 
@@ -188,7 +194,7 @@ function setupCustomHelp(program: Command): void {
 
   // Override addCommand to automatically apply custom help
   const originalAddCommand = program.addCommand.bind(program);
-  program.addCommand = function(cmd: Command): Command {
+  program.addCommand = function (cmd: Command): Command {
     cmd.configureHelp({
       formatHelp: (c) => formatHelp(c),
     });

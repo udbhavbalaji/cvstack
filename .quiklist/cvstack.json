@@ -121,6 +121,13 @@
     },
     {
       "checked": true,
+      "description": "create edit command",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-11T16:11:22.676Z",
+      "updatedAt": "2025-10-15T20:33:55.736Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -135,20 +142,13 @@
     },
     {
       "checked": true,
-      "description": "create edit command",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-11T16:11:22.676Z",
-      "updatedAt": "2025-10-15T20:33:55.736Z"
-    }
-  ],
-  "unchecked": [
-    {
-      "checked": false,
       "description": "update the example commands shown in the help text",
       "priority": "HIGH",
       "createdAt": "2025-10-15T19:00:20.076Z",
-      "updatedAt": "2025-10-15T19:00:20.080Z"
-    },
+      "updatedAt": "2025-10-16T03:14:50.893Z"
+    }
+  ],
+  "unchecked": [
     {
       "checked": false,
       "description": "create summarize command",
