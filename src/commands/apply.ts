@@ -175,7 +175,7 @@ const apply = new Command("apply")
         appMethod: appInfo.appMethod ? "Linkedin" : "Company's Job Portal",
         applicationLink: appInfo.applicationLink,
         applicationStatus: "APPLIED",
-        dateApplied: new Date().toISOString(),
+        dateApplied: new Date().toISOString().split("T")![0]!,
       };
 
       printSingleJobTable(jobRecord);
