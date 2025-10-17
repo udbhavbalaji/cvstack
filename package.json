@@ -1,6 +1,6 @@
 {
   "name": "cvstack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple CLI tool to help track job applications!",
   "module": "bin/cli.ts",
   "bin": {
@@ -20,7 +20,8 @@
     "bundle:scraper": "cd cvstack-scraper/dist && zip -r ../../cvstack-scraper-bundle.zip cvstack-scraper"
   },
   "files": [
-    "dist",
+    "dist/bin/cli.js",
+    "dist/bin/cvstack.js",
     "drizzle"
   ],
   "engines": {
