@@ -151,3 +151,5 @@ chromium/
 drizzle
 test.ts
 commands.txt
+.DS_Store
+*.zip
