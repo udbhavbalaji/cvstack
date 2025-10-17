@@ -198,6 +198,13 @@
       "priority": "HIGH",
       "createdAt": "2025-10-15T19:52:49.208Z",
       "updatedAt": "2025-10-15T19:52:49.218Z"
+    },
+    {
+      "checked": false,
+      "description": "bundle the app to make it available in npm",
+      "priority": "HIGH",
+      "createdAt": "2025-10-17T02:10:59.208Z",
+      "updatedAt": "2025-10-17T02:10:59.209Z"
     }
   ]
 }
