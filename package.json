@@ -1,10 +1,11 @@
 {
   "name": "cvstack",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple CLI tool to help track job applications!",
-  "module": "index.ts",
+  "module": "bin/cli.ts",
   "bin": {
-    "cvstack": "dist/bin/entry.js"
+    "cvstack": "dist/bin/cli.js",
+    "cvs": "dist/bin/cli.js"
   },
   "scripts": {
     "dev": "BUN_ENV=development bun run bin/cli.ts",
@@ -12,14 +13,27 @@
     "db:generate": "bunx drizzle-kit generate",
     "db:migrate": "bunx drizzle-kit migrate",
     "prebuild": "rm -rf drizzle && bun db:generate",
-    "build": "bun scripts/build.ts",
-    "rebuild": "bun unlink && rm -rf dist && bun run build && bun link",
-    "patch": "sed -i '' '1s|^#!usr/bin/env|#!/usr/bin/env|' dist/bin/cli.js",
-    "postbuild": "sed -i '' '1s|^#!usr/bin/env|#!/usr/bin/env|' dist/bin/cli.js",
-    "scrape": "./dist/bin/cvstack-scraper/cvstack-scraper"
+    "build": "bun scripts/build.js",
+    "rebuild": "rm -rf dist && bun run build",
+    "postbuild": "sed -i '' '1s|^#!usr/bin/env|#!/usr/bin/env|' dist/bin/cli.js dist/bin/cvstack.js",
+    "prepublishOnly": "bun run rebuild"
+  },
+  "files": [
+    "dist",
+    "drizzle"
+  ],
+  "engines": {
+    "bun": ">=1.1.0"
   },
   "type": "module",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udbhavbalaji/cvstack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/udbhavbalaji/cvstack/issues"
+  },
+  "homepage": "https://github.com/udbhavbalaji/cvstack/issues",
   "devDependencies": {
     "@types/bun": "latest",
     "drizzle-kit": "^0.31.5"
