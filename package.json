@@ -22,7 +22,7 @@
   "files": [
     "dist/bin/cli.js",
     "dist/bin/cvstack.js",
-    "drizzle"
+    "dist/drizzle"
   ],
   "engines": {
     "bun": ">=1.1.0"
