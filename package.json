@@ -8,8 +8,8 @@
     "cvs": "dist/bin/cli.js"
   },
   "scripts": {
-    "dev": "BUN_ENV=development bun run bin/cli.ts",
-    "app": "bun run bin/cli.ts",
+    "dev": "BUN_ENV=development bun run bin/cvstack.ts",
+    "app": "bun run bin/cvstack.ts",
     "db:generate": "bunx drizzle-kit generate",
     "db:migrate": "bunx drizzle-kit migrate",
     "prebuild": "rm -rf drizzle && bun db:generate",

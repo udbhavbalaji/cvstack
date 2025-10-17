@@ -2,6 +2,7 @@
 
 import createCLI from "@/index";
 import { version, description } from "@/../package.json";
+import { ensureScraperInstalled } from "@/core/install-scraper";
 
 async function main() {
   try {
@@ -14,5 +15,6 @@ async function main() {
 }
 
 if (import.meta.main) {
+  await ensureScraperInstalled();
   main();
 }

@@ -50,6 +50,14 @@ export const ApiKeySchema = z
 
 export const SETUP_COMPLETE_FILEPATH = path.join(APP_DIR, ".setup-complete");
 
+export const SCRAPER_RELEASE_URL =
+  "https://github.com/udbhavbalaji/cvstack/releases/download/v1.0.0/cvstack-scraper-bundle.zip";
+
+export const ZIP_PATH = path.join(
+  path.dirname(path.dirname(PYTHON_EXEC_PROD)),
+  "cvstack-scraper-bundle.zip",
+);
+
 // Env - Lazy initialization to allow setup to run first
 
 let _env: ReturnType<
