@@ -7,10 +7,6 @@ import path from "node:path";
 const BINARY_DIR = path.dirname(path.dirname(PYTHON_EXEC_PROD));
 
 export async function ensureScraperInstalled() {
-  console.log(
-    `Checking for scraper binary at ${PYTHON_EXEC_PROD}...`,
-    fs.existsSync(PYTHON_EXEC_PROD),
-  );
   if (fs.existsSync(PYTHON_EXEC_PROD)) {
     return;
   }
