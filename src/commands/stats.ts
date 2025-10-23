@@ -2,9 +2,9 @@
 import { Command } from "commander";
 
 // Internal imports
-import getDb from "@/external/db";
 import type { JobStats } from "@/types/stats";
 import { wrapAndIndent } from "@/core/help";
+import getDb from "@/external/db";
 
 const stats = new Command("stats")
   .description("Display comprehensive statistics about your job applications")

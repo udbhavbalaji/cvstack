@@ -1,6 +1,6 @@
 #!usr/bin/env bun
 
-import createCLI from "@/index";
+import createCLI, { ensureSetup } from "@/index";
 import { version, description } from "@/../package.json";
 import { ensureScraperInstalled } from "@/core/install-scraper";
 
@@ -16,5 +16,6 @@ async function main() {
 
 if (import.meta.main) {
   await ensureScraperInstalled();
+  await ensureSetup();
   main();
 }

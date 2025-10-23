@@ -3,18 +3,17 @@ import { Command } from "commander";
 import { err } from "neverthrow";
 
 // Internal imports
+import { printSingleJobTable } from "@/core/table";
+import type { InsertJobModel } from "@/types/db";
 import { jobUrlSchema } from "@/core/zod/schema";
 import { parseSchema } from "@/core/zod/parse";
 import { extractJobId } from "@/core/helpers";
-import { safeCrash } from "@/core/terminate";
-import getDb from "@/external/db";
-import { getJobAnalysis } from "@/external";
-import type { InsertJobModel } from "@/types/db";
-import log from "@/core/logger";
-import { printSingleJobTable } from "@/core/table";
 import { confirmPrompt } from "@/core/prompt";
-import { ensureSetup } from "..";
+import { safeCrash } from "@/core/terminate";
+import { getJobAnalysis } from "@/external";
+import getDb from "@/external/db";
 import { getEnv } from "@/consts";
+import log from "@/core/logger";
 
 const add = new Command("add")
   .description("Add a new job to your tracker.")
@@ -43,7 +42,7 @@ const add = new Command("add")
     return jobUrl;
   })
   .action(async (job_url) => {
-    await ensureSetup();
+    // await ensureSetup();
 
     const env = getEnv();
     const jobUrl = await job_url;

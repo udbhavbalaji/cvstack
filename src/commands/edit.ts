@@ -1,15 +1,16 @@
+// External imports
 import { Command } from "commander";
 
-import { ensureSetup } from "@/index";
-import getDb from "@/external/db";
+// Internal imports
+import type { SelectJobModel, UpdateJobDetailsModel } from "@/types/db";
 import { formPrompt, numberPrompt } from "@/core/prompt";
-import z from "zod";
+import type { CVStackError } from "@/types/errors";
+import { parseSchema } from "@/core/zod/parse";
 import { err, ResultAsync } from "neverthrow";
 import { safeCrash } from "@/core/terminate";
-import type { SelectJobModel, UpdateJobDetailsModel } from "@/types/db";
+import getDb from "@/external/db";
 import log from "@/core/logger";
-import { parseSchema } from "@/core/zod/parse";
-import type { CVStackError } from "@/types/errors";
+import z from "zod";
 
 const edit = new Command("edit")
   .description("Edit the details of a job applicatin.")
@@ -27,8 +28,6 @@ const edit = new Command("edit")
     },
   )
   .action(async (opts) => {
-    await ensureSetup();
-
     const { id } = opts;
 
     const db = getDb();

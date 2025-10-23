@@ -45,7 +45,7 @@ async function createCLI(
   app.addCommand(aiAuth);
 
   app.action(async () => {
-    await ensureSetup();
+    // await ensureSetup();
     // Now it's safe to access env after setup
     app.outputHelp();
     if (app.args.length === 0) {

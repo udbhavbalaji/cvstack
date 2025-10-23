@@ -1,17 +1,17 @@
+// External imports
 import { Command } from "commander";
-import { ensureSetup } from "@/index";
+
+// Internal imports
+import { ApiKeySchema, ENV_FILEPATH } from "@/consts";
 import { passwordPrompt } from "@/core/prompt";
 import { parseSchema } from "@/core/zod/parse";
-import { ApiKeySchema, ENV_FILEPATH } from "@/consts";
-import { writeFile } from "@/core/file";
 import { unwrapAsync } from "@/core/unwrap";
+import { writeFile } from "@/core/file";
 import log from "@/core/logger";
 
 const aiAuth = new Command("ai-auth")
   .description("Supply OpenRouter API key for cvstack.")
   .action(async () => {
-    await ensureSetup();
-
     const updatedApiKey = await passwordPrompt(
       "Enter your OpenRouter API key: ",
     );

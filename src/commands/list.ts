@@ -3,14 +3,13 @@ import { Command } from "commander";
 import { err } from "neverthrow";
 
 // Internal imports
-import { appStatuses } from "@/consts";
-import { safeCrash } from "@/core/terminate";
-import type { ApplicationStatus, SelectJobModel } from "@/types/db";
-import getDb from "@/external/db";
-import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
 import { printMultipleJobsTable, printSingleJobTable } from "@/core/table";
-import { ensureSetup } from "..";
+import type { ApplicationStatus, SelectJobModel } from "@/types/db";
+import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
 import { getPrintableJob } from "@/core/helpers";
+import { safeCrash } from "@/core/terminate";
+import { appStatuses } from "@/consts";
+import getDb from "@/external/db";
 import log from "@/core/logger";
 
 const list = new Command("list")
@@ -51,8 +50,6 @@ const list = new Command("list")
     false,
   )
   .action(async (opts) => {
-    await ensureSetup();
-
     const { status, search, d: detailed, star } = opts;
     let where: Partial<SelectJobModel> = {};
     let appStatus: ApplicationStatus | undefined = undefined;

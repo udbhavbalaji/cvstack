@@ -1,11 +1,20 @@
 // External imports
+import yoctoSpinner from "yocto-spinner";
 import { Command } from "commander";
 import { err } from "neverthrow";
-import yoctoSpinner from "yocto-spinner";
 import z from "zod";
 
 // Internal imports
 import { extractJobId, urlValidator } from "@/core/helpers";
+import { crash, safeCrash } from "@/core/terminate";
+import { printSingleJobTable } from "@/core/table";
+import type { InsertJobModel } from "@/types/db";
+import { jobUrlSchema } from "@/core/zod/schema";
+import { parseSchema } from "@/core/zod/parse";
+import { getJobAnalysis } from "@/external";
+import getDb from "@/external/db";
+import { getEnv } from "@/consts";
+import log from "@/core/logger";
 import {
   confirmPrompt,
   getAppInfo,
@@ -13,16 +22,6 @@ import {
   textPrompt,
   togglePrompt,
 } from "@/core/prompt";
-import { printSingleJobTable } from "@/core/table";
-import { crash, safeCrash } from "@/core/terminate";
-import type { InsertJobModel } from "@/types/db";
-import { jobUrlSchema } from "@/core/zod/schema";
-import { parseSchema } from "@/core/zod/parse";
-import { getJobAnalysis } from "@/external";
-import log from "@/core/logger";
-import getDb from "@/external/db";
-import { ensureSetup } from "..";
-import { getEnv } from "@/consts";
 
 const apply = new Command("apply")
   .description("Apply for a Linkedin job.")
@@ -49,8 +48,6 @@ const apply = new Command("apply")
     },
   )
   .action(async (opts) => {
-    await ensureSetup();
-
     const env = getEnv();
 
     const { url, id } = opts;

@@ -5,7 +5,6 @@ import { err } from "neverthrow";
 // Internal imports
 import { confirmPrompt } from "@/core/prompt";
 import { safeCrash } from "@/core/terminate";
-import { ensureSetup } from "@/index";
 import getDb from "@/external/db";
 import log from "@/core/logger";
 
@@ -20,8 +19,6 @@ const reset = new Command("reset")
     false,
   )
   .action(async (opts) => {
-    await ensureSetup();
-
     if (!opts.n) {
       const confirmReset = await confirmPrompt(
         "Are you sure you want to reset your tracker?",

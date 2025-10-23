@@ -1,21 +1,18 @@
 // External imports
 import { Command } from "commander";
+import { err } from "neverthrow";
 
 // Internal imports
-import { ensureSetup } from "@/index";
-import getDb from "@/external/db";
-import { safeCrash } from "@/core/terminate";
-import { err } from "neverthrow";
 import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
 import { copytoClipboard } from "@/core/helpers";
+import { editAction } from "@/commands/edit";
+import { safeCrash } from "@/core/terminate";
 import { linkedinBaseUrl } from "@/consts";
-import { editAction } from "./edit";
+import getDb from "@/external/db";
 
 const search = new Command("search")
   .description("Search for a saved job and perform actions on it")
   .action(async () => {
-    await ensureSetup();
-
     const db = getDb();
 
     const jobs = await db.query.getAll();
