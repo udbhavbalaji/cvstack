@@ -205,6 +205,20 @@
       "priority": "HIGH",
       "createdAt": "2025-10-17T02:10:59.208Z",
       "updatedAt": "2025-10-17T02:10:59.209Z"
+    },
+    {
+      "checked": false,
+      "description": "make a list of all errorable functions",
+      "priority": "HIGH",
+      "createdAt": "2025-10-23T04:44:25.186Z",
+      "updatedAt": "2025-10-23T04:44:25.191Z"
+    },
+    {
+      "checked": false,
+      "description": "make a list of all possible errors to match",
+      "priority": "HIGH",
+      "createdAt": "2025-10-23T04:44:45.700Z",
+      "updatedAt": "2025-10-23T04:44:45.701Z"
     }
   ]
 }

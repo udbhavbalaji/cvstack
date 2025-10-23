@@ -153,3 +153,4 @@ test.ts
 commands.txt
 .DS_Store
 *.zip
+bin/cvstack-scraper
