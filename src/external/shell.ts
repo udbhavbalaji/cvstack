@@ -1,4 +1,5 @@
 import { PYTHON_EXECUTABLE } from "@/consts";
+import safeExec from "@/core/catchresult";
 import errors from "@/core/errors";
 import { unwrapAsync } from "@/core/unwrap";
 import { $ } from "bun";
@@ -28,12 +29,16 @@ async function _runScraper(jobUrl: string) {
   return output.json();
 }
 
-export const runScraper = (jobUrl: string) =>
-  unwrapAsync(
-    ResultAsync.fromPromise(_runScraper(jobUrl), (err) =>
-      errors.create.shellError(err, "runScraper"),
-    ),
-  );
+export const runScraper = safeExec.getSafeFnAsync(_runScraper, {
+  location: "runScraper",
+});
+
+// export const runScraper = (jobUrl: string) =>
+//   unwrapAsync(
+//     ResultAsync.fromPromise(_runScraper(jobUrl), (err) =>
+//       errors.create.shellError(err, "runScraper"),
+//     ),
+//   );
 
 export const generateMigrations = () =>
   ResultAsync.fromPromise(_generateMigrations(), (err) =>

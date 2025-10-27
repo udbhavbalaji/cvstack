@@ -3,7 +3,7 @@ import { Command } from "commander";
 import { err } from "neverthrow";
 
 // Internal imports
-import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import { copytoClipboard } from "@/core/helpers";
 import { editAction } from "@/commands/edit";
 import { safeCrash } from "@/core/terminate";
@@ -29,7 +29,7 @@ const search = new Command("search")
       );
     }
 
-    const job = await searchPrompt(
+    const job = await prompts.search(
       "Search for a job application: ",
       jobs.map((job) => {
         return {
@@ -48,10 +48,7 @@ const search = new Command("search")
       // "Copy title to clipboard",
     ] as const;
 
-    const action = await singleSelectPrompt(
-      "Choose an action: ",
-      actionOptions,
-    );
+    const action = await prompts.select("Choose an action: ", actionOptions);
 
     switch (action) {
       case "Copy Job Id to clipboard": {

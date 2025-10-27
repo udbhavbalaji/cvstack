@@ -9,12 +9,14 @@ import z from "zod";
 // import { getEnv } from "@/consts";
 import type { CVStackModels } from "@/types/ai";
 import { extractedJobInfoSchema } from "@/core/zod/schema";
-import { parseSchema } from "@/core/zod/parse";
+// import { parseSchema } from "@/core/zod/parse";
+import { parse } from "@/core/zod/parse";
 import { crash } from "@/core/terminate";
 import errors from "@/core/errors";
 import type { CVStackError } from "@/types/errors";
 import type { CVStackEnvironment } from "@/types/setup";
 import { unwrap } from "@/core/unwrap";
+import safeExec from "@/core/catchresult";
 
 // const env = getEnv();
 //
@@ -31,18 +33,27 @@ const aiSpinner = yoctoSpinner({
   },
 });
 
-let _extractionClient: Result<OpenAI, CVStackError> | null = null;
+let _extractionClient: OpenAI | null = null;
+// let _extractionClient: Result<OpenAI, CVStackError> | null = null;
 
 function getExtractionClient(env: CVStackEnvironment) {
   if (!_extractionClient) {
-    _extractionClient = Result.fromThrowable(
+    _extractionClient = safeExec.getSafeFn(
       () =>
         new OpenAI({
           apiKey: env.OPENROUTER_API_KEY,
           baseURL: "https://openrouter.ai/api/v1",
         }),
-      (err) => errors.handle.aiError(err, "getExtractionClient"),
+      { location: "createExtractionClient" },
     )();
+    // _extractionClient = Result.fromThrowable(
+    //   () =>
+    //     new OpenAI({
+    //       apiKey: env.OPENROUTER_API_KEY,
+    //       baseURL: "https://openrouter.ai/api/v1",
+    //     }),
+    //   (err) => errors.handle.aiError(err, "getExtractionClient"),
+    // )();
     // return _extractionClient;
   }
   return _extractionClient;
@@ -60,7 +71,8 @@ async function _extractData(
   model: CVStackModels,
   env: CVStackEnvironment,
 ) {
-  const extractionClient = unwrap(getExtractionClient(env));
+  const extractionClient = getExtractionClient(env);
+  // const extractionClient = unwrap(getExtractionClient(env));
 
   const response = await extractionClient.chat.completions.create({
     model,
@@ -89,7 +101,7 @@ async function _extractData(
     throw new Error("No response from OpenRouter");
   }
 
-  const validatedData = parseSchema(
+  const validatedData = parse.sync(
     extractedJobInfoSchema,
     JSON.parse(response.choices[0]!.message.content!),
     "ai",
@@ -98,53 +110,95 @@ async function _extractData(
   return validatedData;
 }
 
-const extractData = async (
-  description: string,
-  company: string,
-  location: string,
-  model: CVStackModels,
-  env: CVStackEnvironment,
-) => {
-  aiSpinner.start(`AI is working its magic...\n\n`);
-
-  setTimeout(() => {
-    aiSpinner.color = "green";
-  }, 5000);
-
-  const textUpdateTimeout = setTimeout(() => {
-    aiSpinner.color = "yellow";
-  }, 10000);
-
-  const res = await extractDataWrapped(
-    description,
-    company,
-    location,
-    model,
-    env,
-  );
-
-  clearTimeout(textUpdateTimeout);
-
-  if (res.isErr()) {
-    aiSpinner.error(chalk.red("Damn, even AI couldn't do its job!"));
-    return crash(res);
-  }
-
-  aiSpinner.success(chalk.cyan("AI extracted the information successfully"));
-
-  return res.value;
-};
-
-const extractDataWrapped = (
+export const extractData = (
   description: string,
   company: string,
   location: string,
   model: CVStackModels,
   env: CVStackEnvironment,
 ) =>
-  ResultAsync.fromPromise(
-    _extractData(description, company, location, model, env),
-    (err) => errors.handle.aiError(err, "extractData", { description, model }),
-  );
+  safeExec.getSafeFnAsync(
+    async () => {
+      aiSpinner.start(`AI is working its magic...\n\n`);
 
-export { extractData as default };
+      setTimeout(() => {
+        aiSpinner.color = "green";
+      }, 5000);
+
+      const textUpdateTimeout = setTimeout(() => {
+        aiSpinner.color = "yellow";
+      }, 10000);
+
+      const data = await _extractData(
+        description,
+        company,
+        location,
+        model,
+        env,
+      );
+
+      clearTimeout(textUpdateTimeout);
+
+      aiSpinner.success(
+        chalk.cyan("AI extracted the information successfully"),
+      );
+
+      return data;
+    },
+    {
+      location: "extractData",
+      spinner: aiSpinner,
+      spinnerErrorMessage: "Damn! Even AI couldn't process this job!",
+    },
+  )();
+
+// const extractData = async (
+//   description: string,
+//   company: string,
+//   location: string,
+//   model: CVStackModels,
+//   env: CVStackEnvironment,
+// ) => {
+//   aiSpinner.start(`AI is working its magic...\n\n`);
+//
+//   setTimeout(() => {
+//     aiSpinner.color = "green";
+//   }, 5000);
+//
+//   const textUpdateTimeout = setTimeout(() => {
+//     aiSpinner.color = "yellow";
+//   }, 10000);
+//
+//   const res = await extractDataWrapped(
+//     description,
+//     company,
+//     location,
+//     model,
+//     env,
+//   );
+//
+//   clearTimeout(textUpdateTimeout);
+//
+//   if (res.isErr()) {
+//     aiSpinner.error(chalk.red("Damn, even AI couldn't do its job!"));
+//     return crash(res);
+//   }
+//
+//   aiSpinner.success(chalk.cyan("AI extracted the information successfully"));
+//
+//   return res.value;
+// };
+//
+// const extractDataWrapped = (
+//   description: string,
+//   company: string,
+//   location: string,
+//   model: CVStackModels,
+//   env: CVStackEnvironment,
+// ) =>
+//   ResultAsync.fromPromise(
+//     _extractData(description, company, location, model, env),
+//     (err) => errors.handle.aiError(err, "extractData", { description, model }),
+//   );
+//
+// export { extractData as default };

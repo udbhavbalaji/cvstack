@@ -5,7 +5,7 @@ import { err } from "neverthrow";
 // Internal imports
 import { printMultipleJobsTable, printSingleJobTable } from "@/core/table";
 import type { ApplicationStatus, SelectJobModel } from "@/types/db";
-import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import { getPrintableJob } from "@/core/helpers";
 import { safeCrash } from "@/core/terminate";
 import { appStatuses } from "@/consts";
@@ -55,7 +55,7 @@ const list = new Command("list")
     let appStatus: ApplicationStatus | undefined = undefined;
 
     if (typeof status === "boolean" && status) {
-      appStatus = await singleSelectPrompt(
+      appStatus = await prompts.select(
         "Select application status you want to view: ",
         appStatuses,
       );
@@ -104,7 +104,7 @@ const list = new Command("list")
         }
       }
 
-      const job = await searchPrompt(
+      const job = await prompts.search(
         "Select the job you want to view: ",
         jobs.map((job) => {
           return {
@@ -114,10 +114,10 @@ const list = new Command("list")
         }),
       );
       if (detailed) {
-        printSingleJobTable(jobs[0]!);
+        printSingleJobTable(job);
         return;
       } else {
-        printMultipleJobsTable([getPrintableJob(jobs[0]!)]);
+        printMultipleJobsTable([getPrintableJob(job)]);
         return;
       }
     }

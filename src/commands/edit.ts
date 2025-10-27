@@ -3,9 +3,9 @@ import { Command } from "commander";
 
 // Internal imports
 import type { SelectJobModel, UpdateJobDetailsModel } from "@/types/db";
-import { formPrompt, numberPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import type { CVStackError } from "@/types/errors";
-import { parseSchema } from "@/core/zod/parse";
+import { parse } from "@/core/zod/parse";
 import { err, ResultAsync } from "neverthrow";
 import { safeCrash } from "@/core/terminate";
 import getDb from "@/external/db";
@@ -18,7 +18,7 @@ const edit = new Command("edit")
     "-i, --id [id]",
     "Linkedin job ID of the job you're applying for. Use 'cvstack show' to find the ID for a job already added. Otherwise, id can be found from the Url (https://www.linkedin.com/jobs/view/<job_id>)",
     (value) => {
-      const jobId = parseSchema(
+      const jobId = parse.sync(
         z.coerce.number("Enter a valid Linkedin Job Id"),
         value,
         "cli",
@@ -36,7 +36,7 @@ const edit = new Command("edit")
 
     if (!id) {
       // get the jobId from User
-      jobId = await numberPrompt(
+      jobId = await prompts.number(
         "Enter Linkedin Job Id: ",
         undefined,
         (value) => {
@@ -71,10 +71,8 @@ const edit = new Command("edit")
 
 export async function editAction(
   job: SelectJobModel,
-  updateFn: (
-    jobId: number,
-    where: UpdateJobDetailsModel,
-  ) => ResultAsync<void, CVStackError>,
+  updateFn: (jobId: number, where: UpdateJobDetailsModel) => Promise<void>,
+  // ) => ResultAsync<void, CVStackError>,
 ) {
   const choices = [
     { name: "title", message: "Title", initial: job.title },
@@ -116,7 +114,7 @@ export async function editAction(
     },
   ];
 
-  const editedDetails = await formPrompt(
+  const editedDetails = await prompts.form(
     "Go through the form to edit the details of the job application:\n\n",
     choices,
   );

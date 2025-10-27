@@ -6,9 +6,9 @@ import { err } from "neverthrow";
 import { printSingleJobTable } from "@/core/table";
 import type { InsertJobModel } from "@/types/db";
 import { jobUrlSchema } from "@/core/zod/schema";
-import { parseSchema } from "@/core/zod/parse";
+import { parse } from "@/core/zod/parse";
 import { extractJobId } from "@/core/helpers";
-import { confirmPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import { safeCrash } from "@/core/terminate";
 import { getJobAnalysis } from "@/external";
 import getDb from "@/external/db";
@@ -18,7 +18,7 @@ import log from "@/core/logger";
 const add = new Command("add")
   .description("Add a new job to your tracker.")
   .argument("<job_url>", "The Linkedin job posting's Url", async (value) => {
-    const jobUrl = parseSchema(jobUrlSchema, value, "cli");
+    const jobUrl = parse.sync(jobUrlSchema, value, "cli");
 
     const jobId = extractJobId(jobUrl);
 
@@ -63,11 +63,15 @@ const add = new Command("add")
 
     printSingleJobTable(jobRecord);
 
-    const confirmed = await confirmPrompt("Do you want to add this job?", true);
+    const confirmed = await prompts.confirm(
+      "Do you want to add this job?",
+      true,
+    );
 
     const db = getDb();
 
     if (confirmed) {
+      console.log(jobRecord.salaryMax);
       await db.insert(jobRecord);
       log.info("Job added successfully");
     } else {

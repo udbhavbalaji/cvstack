@@ -3,7 +3,7 @@ import { Command } from "commander";
 import { err } from "neverthrow";
 
 // Internal imports
-import { confirmPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import { safeCrash } from "@/core/terminate";
 import getDb from "@/external/db";
 import log from "@/core/logger";
@@ -20,7 +20,7 @@ const reset = new Command("reset")
   )
   .action(async (opts) => {
     if (!opts.n) {
-      const confirmReset = await confirmPrompt(
+      const confirmReset = await prompts.confirm(
         "Are you sure you want to reset your tracker?",
         false,
       );
@@ -40,9 +40,9 @@ const reset = new Command("reset")
 
     const db = getDb();
 
-    await db.delete.all().then(() => {
-      log.info("CVStack has been reset completely!");
-    });
+    await db.delete.all();
+
+    log.info("CVStack has been reset completely!");
   });
 
 export { reset as default };

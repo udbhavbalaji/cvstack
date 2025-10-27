@@ -4,7 +4,7 @@ import { err } from "neverthrow";
 import z from "zod";
 
 //  Internal imports
-import { parseSchema } from "@/core/zod/parse";
+import { parse } from "@/core/zod/parse";
 import { safeCrash } from "@/core/terminate";
 import getDb from "@/external/db";
 
@@ -14,7 +14,7 @@ const star = new Command("star")
     "-i, --id [id]",
     "The job ID of the job you want to star.",
     (value) => {
-      const jobId = parseSchema(
+      const jobId = parse.sync(
         z.coerce.number("Enter the job Id fo the job. Must be of type number."),
         value,
         "cli",

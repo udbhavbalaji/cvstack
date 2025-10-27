@@ -164,6 +164,13 @@
     },
     {
       "checked": true,
+      "description": "handle cases where user doesn't have bun installed",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-16T22:46:27.815Z",
+      "updatedAt": "2025-10-16T22:46:34.728Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -185,10 +192,10 @@
     },
     {
       "checked": true,
-      "description": "handle cases where user doesn't have bun installed",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-16T22:46:27.815Z",
-      "updatedAt": "2025-10-16T22:46:34.728Z"
+      "description": "bundle the app to make it available in npm",
+      "priority": "HIGH",
+      "createdAt": "2025-10-17T02:10:59.208Z",
+      "updatedAt": "2025-10-25T05:15:40.868Z"
     }
   ],
   "unchecked": [
@@ -198,13 +205,6 @@
       "priority": "HIGH",
       "createdAt": "2025-10-15T19:52:49.208Z",
       "updatedAt": "2025-10-15T19:52:49.218Z"
-    },
-    {
-      "checked": false,
-      "description": "bundle the app to make it available in npm",
-      "priority": "HIGH",
-      "createdAt": "2025-10-17T02:10:59.208Z",
-      "updatedAt": "2025-10-17T02:10:59.209Z"
     },
     {
       "checked": false,
@@ -219,6 +219,34 @@
       "priority": "HIGH",
       "createdAt": "2025-10-23T04:44:45.700Z",
       "updatedAt": "2025-10-23T04:44:45.701Z"
+    },
+    {
+      "checked": false,
+      "description": "add documentation for cvstack scraper",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:32:13.387Z",
+      "updatedAt": "2025-10-27T13:32:13.393Z"
+    },
+    {
+      "checked": false,
+      "description": "add tests",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:32:28.618Z",
+      "updatedAt": "2025-10-27T13:32:28.618Z"
+    },
+    {
+      "checked": false,
+      "description": "analyze resume command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:33:36.336Z",
+      "updatedAt": "2025-10-27T13:33:36.337Z"
+    },
+    {
+      "checked": false,
+      "description": "create local hosted browser page for gui interaction",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:34:00.705Z",
+      "updatedAt": "2025-10-27T13:34:00.705Z"
     }
   ]
 }

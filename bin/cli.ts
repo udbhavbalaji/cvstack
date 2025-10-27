@@ -13,7 +13,10 @@ try {
   const result = execFileSync(bunEntry, [...args], { stdio: "inherit" });
   // @ts-ignore
   process.exit(result?.status ?? 0);
-} catch {
+} catch (e) {
+  if ((e as Error).message.includes("Command failed")) {
+    process.exit(0);
+  }
   console.error(`
   ❌ This CLI requires Bun to run.
 

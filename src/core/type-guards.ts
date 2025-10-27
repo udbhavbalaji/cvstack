@@ -1,5 +1,5 @@
 // Internal imports
-import type { CVStackError } from "@/types/errors";
+import type { CVStackError, CVStackZodError } from "@/types/errors";
 
 function isCVStackError(err: unknown): err is CVStackError {
   if (
@@ -13,5 +13,12 @@ function isCVStackError(err: unknown): err is CVStackError {
   }
   return false;
 }
+function isCVStackZodError(err: unknown): err is CVStackZodError {
+  if (isCVStackError(err) && err._type === "zod") {
+    return true;
+  }
 
-export { isCVStackError };
+  return false;
+}
+
+export { isCVStackError, isCVStackZodError };

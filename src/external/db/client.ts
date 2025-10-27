@@ -11,6 +11,7 @@ import * as schema from "@/external/db/schema";
 import { DATABASE_PATH, MIGRATIONS_DIR } from "@/consts";
 import errors from "@/core/errors";
 import { unwrap } from "@/core/unwrap";
+import safeExec from "@/core/catchresult";
 
 let db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 

@@ -5,7 +5,8 @@ import path from "node:path";
 // Internal imports
 import { LOG_DIR } from "@/consts";
 import type { LogLevel, LogMode } from "@/types/logger";
-import { writeLog, writeLogAsync } from "@/core/file";
+import { writeFile } from "@/core/file-alt";
+// import { writeLog, writeLogAsync } from "@/core/file";
 import { getEnv } from "@/consts";
 
 const messageColors = {
@@ -79,35 +80,37 @@ async function logToFileAsync<T>(level: LogLevel, value: T, ...args: any[]) {
 
   const logFilepath = path.join(LOG_DIR, logDetails.filename);
 
-  const logWriteResult = await writeLogAsync(
-    logFilepath,
-    `\n${logDetails.logMessage}\n`,
-  );
+  writeFile(logFilepath, `\n${logDetails.logMessage}\n`);
 
-  if (logWriteResult.isOk()) {
-    log.info(`Logfile created at ${logFilepath}`);
-  } else {
-    log.error(
-      "Logfile couldn't be created. Logging in the console instead...\n",
-    );
-    log.error(logDetails.logMessage);
-  }
+  log.info(`Logfile created at ${logFilepath}`);
+
+  // if (logWriteResult.isOk()) {
+  //   log.info(`Logfile created at ${logFilepath}`);
+  // } else {
+  //   log.error(
+  //     "Logfile couldn't be created. Logging in the console instead...\n",
+  //   );
+  //   log.error(logDetails.logMessage);
+  // }
 }
 
 function logToFile<T>(level: LogLevel, value: T, ...args: any[]) {
   const logDetails = getLogDetails(level, value, ...args);
   const logFilepath = path.join(LOG_DIR, logDetails.filename);
 
-  const logWriteResult = writeLog(logFilepath, `\n${logDetails.logMessage}\n`);
+  // const logWriteResult = writeLog(logFilepath, `\n${logDetails.logMessage}\n`);
+  writeFile(logFilepath, `\n${logDetails.logMessage}\n`);
 
-  if (logWriteResult.isOk()) {
-    log.info(`Logfile created at ${logFilepath}`);
-  } else {
-    log.error(
-      "Logfile couldn't be created. Logging in the console instead...\n",
-    );
-    log.error(logDetails.logMessage);
-  }
+  log.info(`Logfile created at ${logFilepath}`);
+
+  // if (logWriteResult.isOk()) {
+  //   log.info(`Logfile created at ${logFilepath}`);
+  // } else {
+  //   log.error(
+  //     "Logfile couldn't be created. Logging in the console instead...\n",
+  //   );
+  //   log.error(logDetails.logMessage);
+  // }
 }
 
 function getLogDetails<T>(

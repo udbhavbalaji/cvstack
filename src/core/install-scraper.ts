@@ -23,7 +23,7 @@ export async function ensureScraperInstalled() {
     console.log("✅ Download complete.");
 
     // Unzip
-    await $`unzip -o ${ZIP_PATH} -d ${BINARY_DIR}`;
+    await $`unzip -o ${ZIP_PATH} -d ${BINARY_DIR}`.quiet();
     // await $`unzip -o ${ZIP_PATH} -d ${path.dirname(PYTHON_EXEC_PROD)}`;
     console.log("✅ Exctraction complete.");
 
