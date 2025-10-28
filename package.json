@@ -1,6 +1,6 @@
 {
   "name": "cvstack",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A simple CLI tool to help track job applications!",
   "module": "bin/cli.ts",
   "bin": {
