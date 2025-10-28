@@ -27,15 +27,13 @@ const star = new Command("star")
     const { id } = opts;
 
     if (!id) {
-      return safeCrash(
-        err({
-          _type: "cli",
-          name: "MissingArgsError",
-          message: "Missing required argument: id",
-          safe: true,
-          location: "star:actionHandler",
-        }),
-      );
+      return safeCrash({
+        _type: "cli",
+        name: "MissingArgsError",
+        message: "Missing required argument: id",
+        safe: true,
+        location: "star:actionHandler",
+      });
     }
 
     const db = getDb();

@@ -6,8 +6,9 @@ import { ZodError } from "zod";
 // Internal imports
 import { isCVStackError, isCVStackZodError } from "@/core/type-guards";
 import type { CVStackError, CVStackZodError } from "@/types/errors";
-import { crashSync, safeCrash } from "@/core/terminate-alt";
+import { crashSync, safeCrash } from "@/core/terminate";
 import errors from "@/core/errors";
+import { CommanderError } from "commander";
 
 const safeExec = new SafeExec([
   // Handle all errors here:
@@ -250,6 +251,45 @@ const safeExec = new SafeExec([
       (e as CVStackError).safe
         ? safeCrash(e as CVStackError)
         : crashSync(e as CVStackError),
+  ],
+  [
+    "Pattern didn't match",
+    (err, ctx) => {
+      return crashSync({
+        _type: "fatal",
+        name: "CVStackConversionError",
+        message: (err as Error).message,
+        safe: false,
+        location: ctx?.location,
+        additionalContext: { ...ctx?.additionalContext, args: ctx?.args },
+      });
+    },
+  ],
+  [
+    "Job Id has wrong format",
+    (err, ctx) => {
+      return crashSync({
+        _type: "fatal",
+        name: "CVStackConversionError",
+        message: (err as Error).message,
+        safe: false,
+        location: ctx?.location,
+        additionalContext: { ...ctx?.additionalContext, args: ctx?.args },
+      });
+    },
+  ],
+  [
+    CommanderError,
+    (err, ctx) => {
+      return crashSync({
+        _type: "fatal",
+        name: "CVStackCommandError",
+        message: (err as Error).message,
+        safe: false,
+        location: ctx?.location,
+        additionalContext: { ...ctx?.additionalContext, args: ctx?.args },
+      });
+    },
   ],
 ]).catchAll((e, ctx) => {
   if (e instanceof Error) {

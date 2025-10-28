@@ -1,6 +1,5 @@
 // External imports
 import { Command } from "commander";
-import { err } from "neverthrow";
 
 // Internal imports
 import { prompts } from "@/core/prompt";
@@ -26,15 +25,13 @@ const reset = new Command("reset")
       );
 
       if (!confirmReset) {
-        return safeCrash(
-          err({
-            _type: "cli",
-            name: "UserAbortedOperationError",
-            message: "Aborting reset operation.",
-            safe: true,
-            location: "reset:actionHandler",
-          }),
-        );
+        return safeCrash({
+          _type: "cli",
+          name: "UserAbortedOperationError",
+          message: "Aborting reset operation.",
+          safe: true,
+          location: "reset:actionHandler",
+        });
       }
     }
 

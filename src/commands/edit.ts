@@ -4,9 +4,9 @@ import { Command } from "commander";
 // Internal imports
 import type { SelectJobModel, UpdateJobDetailsModel } from "@/types/db";
 import { prompts } from "@/core/prompt";
-import type { CVStackError } from "@/types/errors";
+// import type { CVStackError } from "@/types/errors";
 import { parse } from "@/core/zod/parse";
-import { err, ResultAsync } from "neverthrow";
+// import { err, ResultAsync } from "neverthrow";
 import { safeCrash } from "@/core/terminate";
 import getDb from "@/external/db";
 import log from "@/core/logger";
@@ -54,16 +54,14 @@ const edit = new Command("edit")
     const job = await db.query.getJob(jobId);
 
     if (!job) {
-      return safeCrash(
-        err({
-          _type: "cli",
-          name: "CVStackNotFoundError",
-          message: `Job with id ${jobId} not found`,
-          safe: true,
-          location: "edit:actionHandler",
-          additionalContext: { jobId },
-        }),
-      );
+      return safeCrash({
+        _type: "cli",
+        name: "CVStackNotFoundError",
+        message: `Job with id ${jobId} not found`,
+        safe: true,
+        location: "edit:actionHandler",
+        additionalContext: { jobId },
+      });
     }
 
     return await editAction(job, db.update.details);

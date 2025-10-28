@@ -6,7 +6,7 @@ import { parse } from "@/core/zod/parse";
 import { scrapedJobSchema } from "@/core/zod/schema";
 import { unwrapAsync } from "@/core/unwrap";
 import chalk from "chalk";
-import { crash } from "@/core/terminate";
+import { crashSync } from "@/core/terminate";
 import safeExec from "@/core/catchresult";
 
 const scraperSpinner = yoctoSpinner({
@@ -17,6 +17,13 @@ const scraperSpinner = yoctoSpinner({
   },
 });
 
+/**
+ * @deprecated use scrapeJobData instead
+ *
+ * @param jobUrl url of the job to scrape
+ *
+ * @returns the scraped job data as a JSON object
+ */
 async function _scrapeJobData(jobUrl: string) {
   const jobJsonData = await runScraper(jobUrl);
 

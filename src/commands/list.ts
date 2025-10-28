@@ -30,16 +30,14 @@ const list = new Command("list")
         return value;
       }
 
-      safeCrash(
-        err({
-          _type: "cli",
-          name: "InvalidArgError",
-          message: `Invalid application status: ${value}. Valid statuses are: ${appStatuses.join(", ")}`,
-          safe: true,
-          location: "list:status:optionParser",
-          additionalContext: { input: value },
-        }),
-      );
+      safeCrash({
+        _type: "cli",
+        name: "InvalidArgError",
+        message: `Invalid application status: ${value}. Valid statuses are: ${appStatuses.join(", ")}`,
+        safe: true,
+        location: "list:status:optionParser",
+        additionalContext: { input: value },
+      });
     },
   )
   .option("-d, [detailed]", "Get detailed information about a job.", false)
@@ -71,16 +69,14 @@ const list = new Command("list")
     const jobs = await db.query.getAllWhere(where);
 
     if (jobs.length === 0) {
-      safeCrash(
-        err({
-          _type: "cli",
-          name: "NotFoundError",
-          message: "No jobs found for the selected filters",
-          safe: true,
-          location: "list:actionHandler",
-          additionalContext: { filters: { status } },
-        }),
-      );
+      safeCrash({
+        _type: "cli",
+        name: "NotFoundError",
+        message: "No jobs found for the selected filters",
+        safe: true,
+        location: "list:actionHandler",
+        additionalContext: { filters: { status } },
+      });
     } else if (jobs.length === 1) {
       if (detailed) {
         printSingleJobTable(jobs[0]!);

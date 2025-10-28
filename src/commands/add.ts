@@ -1,6 +1,6 @@
 // External imports
 import { Command } from "commander";
-import { err } from "neverthrow";
+// import { err } from "neverthrow";
 
 // Internal imports
 import { printSingleJobTable } from "@/core/table";
@@ -12,7 +12,7 @@ import { prompts } from "@/core/prompt";
 import { safeCrash } from "@/core/terminate";
 import { getJobAnalysis } from "@/external";
 import getDb from "@/external/db";
-import { getEnv } from "@/consts";
+import { getEnv, linkedinBaseUrl } from "@/consts";
 import log from "@/core/logger";
 
 const add = new Command("add")
@@ -27,16 +27,14 @@ const add = new Command("add")
     const jobExists = await db.query.exist(jobId);
 
     if (jobExists) {
-      return safeCrash(
-        err({
-          _type: "cli",
-          name: "DuplicateJobError",
-          message: `Job with id ${jobId} already exists. Current status: ${jobExists.applicationStatus}`,
-          safe: true,
-          location: "add:job_url:argParser",
-          additionalContext: { jobId, status: jobExists.applicationStatus },
-        }),
-      );
+      return safeCrash({
+        _type: "cli",
+        name: "DuplicateJobError",
+        message: `Job with id ${jobId} already exists. Current status: ${jobExists.applicationStatus}`,
+        safe: true,
+        location: "add:job_url:argParser",
+        additionalContext: { jobId, status: jobExists.applicationStatus },
+      });
     }
 
     return jobUrl;
@@ -49,7 +47,11 @@ const add = new Command("add")
 
     const jobId = extractJobId(jobUrl);
 
-    const jobAnalysis = await getJobAnalysis(jobUrl, env);
+    const jobAnalysis = await getJobAnalysis(
+      `${linkedinBaseUrl}/${jobId}`,
+      env,
+    );
+    // const jobAnalysis = await getJobAnalysis(jobUrl, env);
 
     const jobRecord: InsertJobModel = {
       ...jobAnalysis,
@@ -71,7 +73,6 @@ const add = new Command("add")
     const db = getDb();
 
     if (confirmed) {
-      console.log(jobRecord.salaryMax);
       await db.insert(jobRecord);
       log.info("Job added successfully");
     } else {

@@ -12,6 +12,7 @@ export function capitalize(word: string): string {
 
 export const extractJobId = safeExec.getSafeFn(
   (url: string) => {
+    console.log("coming here");
     const match = url.match(/\/jobs\/view\/(\d+)/);
     const res = match ? match[1] : undefined;
     if (res === undefined) throw new Error("Pattern didn't match");
@@ -20,6 +21,7 @@ export const extractJobId = safeExec.getSafeFn(
 
       if (Number.isNaN(numRes)) throw new Error("Job Id has wrong format");
 
+      console.log(numRes);
       return numRes;
     }
   },

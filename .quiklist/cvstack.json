@@ -73,6 +73,13 @@
     },
     {
       "checked": true,
+      "description": "bundle the app to make it available in npm",
+      "priority": "HIGH",
+      "createdAt": "2025-10-17T02:10:59.208Z",
+      "updatedAt": "2025-10-25T05:15:40.868Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -189,13 +196,6 @@
       "priority": "LOW",
       "createdAt": "2025-10-14T15:06:19.539Z",
       "updatedAt": "2025-10-16T19:24:30.261Z"
-    },
-    {
-      "checked": true,
-      "description": "bundle the app to make it available in npm",
-      "priority": "HIGH",
-      "createdAt": "2025-10-17T02:10:59.208Z",
-      "updatedAt": "2025-10-25T05:15:40.868Z"
     }
   ],
   "unchecked": [
@@ -236,10 +236,10 @@
     },
     {
       "checked": false,
-      "description": "analyze resume command",
+      "description": "add analyze resume command",
       "priority": "HIGH",
       "createdAt": "2025-10-27T13:33:36.336Z",
-      "updatedAt": "2025-10-27T13:33:36.337Z"
+      "updatedAt": "2025-10-28T15:04:02.956Z"
     },
     {
       "checked": false,
@@ -247,6 +247,20 @@
       "priority": "HIGH",
       "createdAt": "2025-10-27T13:34:00.705Z",
       "updatedAt": "2025-10-27T13:34:00.705Z"
+    },
+    {
+      "checked": false,
+      "description": "need to fix issue where the extract job id fn doesnt throw because only digits are extracted, try to check for valid jobId better in that fn only",
+      "priority": "HIGH",
+      "createdAt": "2025-10-28T05:24:54.324Z",
+      "updatedAt": "2025-10-28T05:24:54.325Z"
+    },
+    {
+      "checked": false,
+      "description": "deprecate older functions and methods, clearly outlining the newer method or function to use",
+      "priority": "HIGH",
+      "createdAt": "2025-10-28T06:49:59.154Z",
+      "updatedAt": "2025-10-28T06:49:59.155Z"
     }
   ]
 }

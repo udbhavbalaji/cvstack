@@ -1,12 +1,12 @@
 // External imports
 import yoctoSpinner from "yocto-spinner";
 import { Command } from "commander";
-import { err } from "neverthrow";
+// import { err } from "neverthrow";
 import z from "zod";
 
 // Internal imports
 import { extractJobId, urlValidator } from "@/core/helpers";
-import { crash, safeCrash } from "@/core/terminate";
+import { crashSync, safeCrash } from "@/core/terminate";
 import { printSingleJobTable } from "@/core/table";
 import type { InsertJobModel } from "@/types/db";
 import { jobUrlSchema } from "@/core/zod/schema";
@@ -89,16 +89,14 @@ const apply = new Command("apply")
     }
 
     if (!jobUrl || !jobId) {
-      return crash(
-        err({
-          _type: "fatal",
-          name: "FatalError",
-          message: "Job Id or Job Url is undefined even after all assignments",
-          safe: false,
-          location: "apply:actionHandler",
-          additionalContext: { jobUrl, jobId },
-        }),
-      );
+      return crashSync({
+        _type: "fatal",
+        name: "FatalError",
+        message: "Job Id or Job Url is undefined even after all assignments",
+        safe: false,
+        location: "apply:actionHandler",
+        additionalContext: { jobUrl, jobId },
+      });
     }
 
     const db = getDb();
@@ -107,16 +105,14 @@ const apply = new Command("apply")
 
     if (job) {
       if (job.applicationStatus !== "NOT APPLIED") {
-        return safeCrash(
-          err({
-            _type: "cli",
-            name: "DuplicateJobError",
-            message: `Job with id ${jobId} already exists. Current status: ${job.applicationStatus}`,
-            safe: true,
-            location: "apply:actionHandler",
-            additionalContext: { jobId, job },
-          }),
-        );
+        return safeCrash({
+          _type: "cli",
+          name: "DuplicateJobError",
+          message: `Job with id ${jobId} already exists. Current status: ${job.applicationStatus}`,
+          safe: true,
+          location: "apply:actionHandler",
+          additionalContext: { jobId, job },
+        });
       } else {
         // handle the updating of the status
         //  fix: need to handle the referral input from user for this case

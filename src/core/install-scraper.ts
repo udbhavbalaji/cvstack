@@ -3,12 +3,24 @@ import { PYTHON_EXEC_PROD, SCRAPER_RELEASE_URL, ZIP_PATH } from "@/consts";
 import { $ } from "bun";
 import fs from "node:fs";
 import path from "node:path";
+import { prompts } from "./prompt";
+import chalk from "chalk";
 
 const BINARY_DIR = path.dirname(path.dirname(PYTHON_EXEC_PROD));
 
 export async function ensureScraperInstalled() {
   if (fs.existsSync(PYTHON_EXEC_PROD)) {
     return;
+  }
+
+  const userConfirmed = await prompts.confirm(
+    "CvStack requires a job scraper tool. Do you want to download it now?",
+    true,
+  );
+
+  if (!userConfirmed) {
+    console.error(chalk.yellow("warn: Cancelled."));
+    process.exit(0);
   }
 
   console.log("Scraper not found. Downloading...");

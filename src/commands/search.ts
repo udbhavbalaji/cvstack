@@ -18,15 +18,13 @@ const search = new Command("search")
     const jobs = await db.query.getAll();
 
     if (jobs.length === 0) {
-      return safeCrash(
-        err({
-          _type: "cli",
-          name: "NotFoundError",
-          message: "No jobs found",
-          safe: true,
-          location: "search:actionHandler",
-        }),
-      );
+      return safeCrash({
+        _type: "cli",
+        name: "NotFoundError",
+        message: "No jobs found",
+        safe: true,
+        location: "search:actionHandler",
+      });
     }
 
     const job = await prompts.search(

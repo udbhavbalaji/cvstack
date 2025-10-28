@@ -26,6 +26,7 @@ async function createCLI(
     .showSuggestionAfterError(true)
     .addHelpText("beforeAll", getBanner())
     .allowExcessArguments(true)
+    .exitOverride()
     .alias("cvs");
 
   // Adding custom help
