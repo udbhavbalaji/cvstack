@@ -3,14 +3,13 @@ import { Command } from "commander";
 import { err } from "neverthrow";
 
 // Internal imports
-import { appStatuses } from "@/consts";
-import { safeCrash } from "@/core/terminate";
-import type { ApplicationStatus, SelectJobModel } from "@/types/db";
-import getDb from "@/external/db";
-import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
 import { printMultipleJobsTable, printSingleJobTable } from "@/core/table";
-import { ensureSetup } from "..";
+import type { ApplicationStatus, SelectJobModel } from "@/types/db";
+import { prompts } from "@/core/prompt";
 import { getPrintableJob } from "@/core/helpers";
+import { safeCrash } from "@/core/terminate";
+import { appStatuses } from "@/consts";
+import getDb from "@/external/db";
 import log from "@/core/logger";
 
 const list = new Command("list")
@@ -31,16 +30,14 @@ const list = new Command("list")
         return value;
       }
 
-      safeCrash(
-        err({
-          _type: "cli",
-          name: "InvalidArgError",
-          message: `Invalid application status: ${value}. Valid statuses are: ${appStatuses.join(", ")}`,
-          safe: true,
-          location: "list:status:optionParser",
-          additionalContext: { input: value },
-        }),
-      );
+      safeCrash({
+        _type: "cli",
+        name: "InvalidArgError",
+        message: `Invalid application status: ${value}. Valid statuses are: ${appStatuses.join(", ")}`,
+        safe: true,
+        location: "list:status:optionParser",
+        additionalContext: { input: value },
+      });
     },
   )
   .option("-d, [detailed]", "Get detailed information about a job.", false)
@@ -51,14 +48,12 @@ const list = new Command("list")
     false,
   )
   .action(async (opts) => {
-    await ensureSetup();
-
     const { status, search, d: detailed, star } = opts;
     let where: Partial<SelectJobModel> = {};
     let appStatus: ApplicationStatus | undefined = undefined;
 
     if (typeof status === "boolean" && status) {
-      appStatus = await singleSelectPrompt(
+      appStatus = await prompts.select(
         "Select application status you want to view: ",
         appStatuses,
       );
@@ -74,16 +69,14 @@ const list = new Command("list")
     const jobs = await db.query.getAllWhere(where);
 
     if (jobs.length === 0) {
-      safeCrash(
-        err({
-          _type: "cli",
-          name: "NotFoundError",
-          message: "No jobs found for the selected filters",
-          safe: true,
-          location: "list:actionHandler",
-          additionalContext: { filters: { status } },
-        }),
-      );
+      safeCrash({
+        _type: "cli",
+        name: "NotFoundError",
+        message: "No jobs found for the selected filters",
+        safe: true,
+        location: "list:actionHandler",
+        additionalContext: { filters: { status } },
+      });
     } else if (jobs.length === 1) {
       if (detailed) {
         printSingleJobTable(jobs[0]!);
@@ -107,7 +100,7 @@ const list = new Command("list")
         }
       }
 
-      const job = await searchPrompt(
+      const job = await prompts.search(
         "Select the job you want to view: ",
         jobs.map((job) => {
           return {
@@ -117,10 +110,10 @@ const list = new Command("list")
         }),
       );
       if (detailed) {
-        printSingleJobTable(jobs[0]!);
+        printSingleJobTable(job);
         return;
       } else {
-        printMultipleJobsTable([getPrintableJob(jobs[0]!)]);
+        printMultipleJobsTable([getPrintableJob(job)]);
         return;
       }
     }

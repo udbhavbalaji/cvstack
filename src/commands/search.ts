@@ -1,38 +1,33 @@
 // External imports
 import { Command } from "commander";
+import { err } from "neverthrow";
 
 // Internal imports
-import { ensureSetup } from "@/index";
-import getDb from "@/external/db";
-import { safeCrash } from "@/core/terminate";
-import { err } from "neverthrow";
-import { searchPrompt, singleSelectPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import { copytoClipboard } from "@/core/helpers";
+import { editAction } from "@/commands/edit";
+import { safeCrash } from "@/core/terminate";
 import { linkedinBaseUrl } from "@/consts";
-import { editAction } from "./edit";
+import getDb from "@/external/db";
 
 const search = new Command("search")
   .description("Search for a saved job and perform actions on it")
   .action(async () => {
-    await ensureSetup();
-
     const db = getDb();
 
     const jobs = await db.query.getAll();
 
     if (jobs.length === 0) {
-      return safeCrash(
-        err({
-          _type: "cli",
-          name: "NotFoundError",
-          message: "No jobs found",
-          safe: true,
-          location: "search:actionHandler",
-        }),
-      );
+      return safeCrash({
+        _type: "cli",
+        name: "NotFoundError",
+        message: "No jobs found",
+        safe: true,
+        location: "search:actionHandler",
+      });
     }
 
-    const job = await searchPrompt(
+    const job = await prompts.search(
       "Search for a job application: ",
       jobs.map((job) => {
         return {
@@ -51,10 +46,7 @@ const search = new Command("search")
       // "Copy title to clipboard",
     ] as const;
 
-    const action = await singleSelectPrompt(
-      "Choose an action: ",
-      actionOptions,
-    );
+    const action = await prompts.select("Choose an action: ", actionOptions);
 
     switch (action) {
       case "Copy Job Id to clipboard": {

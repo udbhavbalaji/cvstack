@@ -1,5 +1,5 @@
 import scrapeJobData from "@/external/scraper";
-import extractData from "@/external/ai/extract";
+import { extractData } from "@/external/ai/extract";
 import type { CVStackEnvironment } from "@/types/setup";
 
 async function getJobAnalysis(jobUrl: string, env: CVStackEnvironment) {

@@ -1,9 +1,9 @@
 // External imports
-import { err, type ResultAsync, type Result } from "neverthrow";
+import { type ResultAsync, type Result } from "neverthrow";
 
 // Internal imports
 import type { CVStackError } from "@/types/errors";
-import { crashSync, safeCrash, crash } from "@/core/terminate";
+import { crashSync, safeCrash } from "@/core/terminate";
 
 function unwrap<T, E extends CVStackError>(
   result: Result<T, E>,
@@ -14,7 +14,7 @@ function unwrap<T, E extends CVStackError>(
       ...result.error,
       location: `${result.error.location}${additionalLocationContext ? `:${additionalLocationContext}` : ""}`,
     };
-    return result.error.safe ? safeCrash(err(newErr)) : crashSync(err(newErr));
+    return result.error.safe ? safeCrash(newErr) : crashSync(newErr);
   }
 
   return result.value;
@@ -31,7 +31,7 @@ async function unwrapAsync<T, E extends CVStackError>(
       ...result.error,
       location: `${result.error.location}${additionalLocationContext ? `:${additionalLocationContext}` : ""}`,
     };
-    return result.error.safe ? safeCrash(err(newErr)) : crash(err(newErr));
+    return result.error.safe ? safeCrash(newErr) : crashSync(newErr);
   }
 
   return result.value;

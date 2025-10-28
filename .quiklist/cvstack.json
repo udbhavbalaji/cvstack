@@ -73,6 +73,13 @@
     },
     {
       "checked": true,
+      "description": "bundle the app to make it available in npm",
+      "priority": "HIGH",
+      "createdAt": "2025-10-17T02:10:59.208Z",
+      "updatedAt": "2025-10-25T05:15:40.868Z"
+    },
+    {
+      "checked": true,
       "description": "setup env file loading and setup",
       "priority": "MEDIUM",
       "createdAt": "2025-10-12T01:49:46.079Z",
@@ -164,6 +171,13 @@
     },
     {
       "checked": true,
+      "description": "handle cases where user doesn't have bun installed",
+      "priority": "MEDIUM",
+      "createdAt": "2025-10-16T22:46:27.815Z",
+      "updatedAt": "2025-10-16T22:46:34.728Z"
+    },
+    {
+      "checked": true,
       "description": "setup python project",
       "priority": "LOW",
       "createdAt": "2025-10-11T16:07:16.007Z",
@@ -182,13 +196,6 @@
       "priority": "LOW",
       "createdAt": "2025-10-14T15:06:19.539Z",
       "updatedAt": "2025-10-16T19:24:30.261Z"
-    },
-    {
-      "checked": true,
-      "description": "handle cases where user doesn't have bun installed",
-      "priority": "MEDIUM",
-      "createdAt": "2025-10-16T22:46:27.815Z",
-      "updatedAt": "2025-10-16T22:46:34.728Z"
     }
   ],
   "unchecked": [
@@ -201,10 +208,59 @@
     },
     {
       "checked": false,
-      "description": "bundle the app to make it available in npm",
+      "description": "make a list of all errorable functions",
       "priority": "HIGH",
-      "createdAt": "2025-10-17T02:10:59.208Z",
-      "updatedAt": "2025-10-17T02:10:59.209Z"
+      "createdAt": "2025-10-23T04:44:25.186Z",
+      "updatedAt": "2025-10-23T04:44:25.191Z"
+    },
+    {
+      "checked": false,
+      "description": "make a list of all possible errors to match",
+      "priority": "HIGH",
+      "createdAt": "2025-10-23T04:44:45.700Z",
+      "updatedAt": "2025-10-23T04:44:45.701Z"
+    },
+    {
+      "checked": false,
+      "description": "add documentation for cvstack scraper",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:32:13.387Z",
+      "updatedAt": "2025-10-27T13:32:13.393Z"
+    },
+    {
+      "checked": false,
+      "description": "add tests",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:32:28.618Z",
+      "updatedAt": "2025-10-27T13:32:28.618Z"
+    },
+    {
+      "checked": false,
+      "description": "add analyze resume command",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:33:36.336Z",
+      "updatedAt": "2025-10-28T15:04:02.956Z"
+    },
+    {
+      "checked": false,
+      "description": "create local hosted browser page for gui interaction",
+      "priority": "HIGH",
+      "createdAt": "2025-10-27T13:34:00.705Z",
+      "updatedAt": "2025-10-27T13:34:00.705Z"
+    },
+    {
+      "checked": false,
+      "description": "need to fix issue where the extract job id fn doesnt throw because only digits are extracted, try to check for valid jobId better in that fn only",
+      "priority": "HIGH",
+      "createdAt": "2025-10-28T05:24:54.324Z",
+      "updatedAt": "2025-10-28T05:24:54.325Z"
+    },
+    {
+      "checked": false,
+      "description": "deprecate older functions and methods, clearly outlining the newer method or function to use",
+      "priority": "HIGH",
+      "createdAt": "2025-10-28T06:49:59.154Z",
+      "updatedAt": "2025-10-28T06:49:59.155Z"
     }
   ]
 }

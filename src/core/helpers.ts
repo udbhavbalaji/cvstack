@@ -1,29 +1,32 @@
 // External imports
-import { Result } from "neverthrow";
 import clipboard from "clipboardy";
 
 // Internal imports
-import errors from "@/core/errors";
-import { unwrap } from "@/core/unwrap";
 import { jobUrlSchema, urlSchema } from "@/core/zod/schema";
 import type { SelectJobModel } from "@/types/db";
+import safeExec from "./catchresult";
 
 export function capitalize(word: string): string {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-function _unsafeExtractJobId(url: string) {
-  const match = url.match(/\/jobs\/view\/(\d+)/);
-  const res = match ? match[1] : undefined;
-  if (res === undefined) throw new Error("Pattern didn't match");
-  else {
-    const numRes = parseInt(res);
+export const extractJobId = safeExec.getSafeFn(
+  (url: string) => {
+    console.log("coming here");
+    const match = url.match(/\/jobs\/view\/(\d+)/);
+    const res = match ? match[1] : undefined;
+    if (res === undefined) throw new Error("Pattern didn't match");
+    else {
+      const numRes = parseInt(res);
 
-    if (Number.isNaN(numRes)) throw new Error("Job Id has wrong format");
+      if (Number.isNaN(numRes)) throw new Error("Job Id has wrong format");
 
-    return numRes;
-  }
-}
+      console.log(numRes);
+      return numRes;
+    }
+  },
+  { location: "extractJobId" },
+);
 
 export function urlValidator(url: string, type: "linkedin" | "other") {
   const res =
@@ -68,11 +71,3 @@ export function getPrintableJob(job: SelectJobModel) {
     dateApplied: job.dateApplied,
   };
 }
-
-export const extractJobId = (jobUrl: string) =>
-  unwrap(
-    Result.fromThrowable(
-      (jobUrl: string) => _unsafeExtractJobId(jobUrl),
-      (err) => errors.handle.unknownError(err, "extractJobId"),
-    )(jobUrl),
-  );

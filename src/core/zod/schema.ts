@@ -25,7 +25,7 @@ export const extractedJobInfoSchema = z.object({
   technicalSkills: z.array(z.string().nonempty()),
   nonTechnicalSkills: z.array(z.string().nonempty()),
   salaryMin: z.number().nonnegative(),
-  salarymax: z.number().nonnegative(),
+  salaryMax: z.number().nonnegative(),
   salaryCurrency: z.enum(["USD", "CAD", "INR", "EUR"]),
   immigrationRequirements: z.string(),
   benefits: z.array(z.string().nonempty()),

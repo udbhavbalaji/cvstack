@@ -1,11 +1,9 @@
 // External imports
 import { Command } from "commander";
-import { err } from "neverthrow";
 
 // Internal imports
-import { confirmPrompt } from "@/core/prompt";
+import { prompts } from "@/core/prompt";
 import { safeCrash } from "@/core/terminate";
-import { ensureSetup } from "@/index";
 import getDb from "@/external/db";
 import log from "@/core/logger";
 
@@ -20,32 +18,28 @@ const reset = new Command("reset")
     false,
   )
   .action(async (opts) => {
-    await ensureSetup();
-
     if (!opts.n) {
-      const confirmReset = await confirmPrompt(
+      const confirmReset = await prompts.confirm(
         "Are you sure you want to reset your tracker?",
         false,
       );
 
       if (!confirmReset) {
-        return safeCrash(
-          err({
-            _type: "cli",
-            name: "UserAbortedOperationError",
-            message: "Aborting reset operation.",
-            safe: true,
-            location: "reset:actionHandler",
-          }),
-        );
+        return safeCrash({
+          _type: "cli",
+          name: "UserAbortedOperationError",
+          message: "Aborting reset operation.",
+          safe: true,
+          location: "reset:actionHandler",
+        });
       }
     }
 
     const db = getDb();
 
-    await db.delete.all().then(() => {
-      log.info("CVStack has been reset completely!");
-    });
+    await db.delete.all();
+
+    log.info("CVStack has been reset completely!");
   });
 
 export { reset as default };
